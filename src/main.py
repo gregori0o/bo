@@ -2,25 +2,12 @@ from base_structure import Graph
 from initial_solution import CreateSolution
 from json_parser import Parser
 
-size = 10
-edges = [
-    (0, 1, 3),
-    (1, 2, 3),
-    (2, 5, 5),
-    (1, 3, 2),
-    (3, 4, 1),
-    (4, 7, 1),
-    (5, 7, 3),
-    (5, 6, 6),
-    (7, 6, 3),
-    (6, 9, 2),
-    (8, 9, 4),
-    (7, 8, 5)
-]
-interchange_points = [1, 5, 6, 7]
-
 
 def main():
+    _parser = Parser("../utils/graphs/g1.json")
+    interchange_points = _parser.get_interchange_points()
+    size = _parser.get_size()
+    edges = _parser.get_edges()
     graph = Graph(size)
     for i, j, w in edges:
         graph.add_edge(i, j, w)
@@ -28,9 +15,6 @@ def main():
     init = CreateSolution(graph)
     lines, buses = init.create_init_solution(3, 20)
     print(lines, buses)
-
-    _parser = Parser("../utils/graphs/example.json")
-    print(_parser.get_data())
 
 
 if __name__ == '__main__':
