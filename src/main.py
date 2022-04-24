@@ -14,7 +14,7 @@ def main():
     graph.set_interchange_points(interchange_points)
     init = CreateSolution(graph)
     lines, buses = init.create_init_solution(3, 20)
-    print(lines, buses)
+    print(size, edges, interchange_points, lines, buses)
 
 
 if __name__ == '__main__':

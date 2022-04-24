@@ -3,6 +3,11 @@ import random
 
 # colors:
 # https://graphviz.org/doc/info/colors.html
+def create_colors_for_lines(num_of_lines: int):
+    # creates random colors for edges (from 150 because want to make colors less vivid)
+    r = lambda: random.randint(150, 255)
+    colors = ['#%02X%02X%02X' % (r(), r(), r()) for line in range(num_of_lines)]
+    return colors
 
 class GraphVisualizer:
     def __init__(self, size: int, edges: tuple[any, any, int]):
@@ -27,10 +32,65 @@ class GraphVisualizer:
         self.graph.view(filename=filename, directory='../utils/visualizations/graphs')
 
 
-class SolutionVisualizer:
-    def __init__(self, size, edges, lines):
+class LinesVisualizer:
+    def __init__(self, size: int, edges: tuple[any, any, int], lines: tuple, stations: tuple):
+        self.colors = create_colors_for_lines(len(lines))
         self.graph = graphviz.Graph('Buses lines', engine='sfdp')
+        self.add_interchange_stations(stations)
+        self.add_lines(lines, edges)
 
+    def add_interchange_stations(self, stations):
+        self.graph.attr('node', shape='doubleoctagon', style='filled', fillcolor='lightcoral', fixedsize='true')
+        for no_station in stations:
+            self.graph.node('#' + str(no_station))
+        self.graph.attr('node', shape='circle', style='filled', fillcolor='lightskyblue1', fixedsize='true')
+
+    def add_lines(self, lines, edges):
+        self.graph.attr('edge', penwidth='5')
+        for idx, line in enumerate(lines):
+            i, j = 0, 1
+            while j < len(line):
+                self.graph.edge('#' + str(line[i]), '#' + str(line[j]), color=self.colors[idx])
+                i += 1
+                j += 1
+
+    def show(self):
+        return self.graph
+
+
+class SolutionVisualizer:
+    def __init__(self, size: int, edges: tuple[any, any, int], lines: tuple, stations: tuple):
+        self.colors = create_colors_for_lines(len(lines))
+        self.graph = graphviz.Graph('Buses lines', engine='sfdp')
+        self.add_interchange_stations(stations)
+        self.add_lines_segments(lines, edges)
+        # self.add_unattended_line_segments(edges)
+
+    def add_interchange_stations(self, stations):
+        self.graph.attr('node', shape='doubleoctagon', style='filled', fillcolor='lightcoral', fixedsize='true')
+        for no_station in stations:
+            self.graph.node('#' + str(no_station))
+
+    def add_lines_segments(self, lines, edges):
+        self.graph.attr('edge', penwidth='5')
+        for idx, line in enumerate(lines):
+            i, j = 0, 1
+            while j < len(line):
+                for x, y, val in edges:
+                    if (line[i] == x and line[j] == y) or (line[i] == x and line[j] == y):
+                        self.graph.edge('#' + str(line[i]), '#' + str(line[j]), label=str(val), color=self.colors[idx])
+                        break
+                i += 1
+                j += 1
+
+    def add_unattended_line_segments(self, edges):
+        self.graph.attr('node', shape='circle', style='filled', fillcolor='lightskyblue1')
+
+    def show(self):
+        return self.graph
+
+    def save(self, filename: str):
+        self.graph.view(filename=filename, directory='../utils/visualizations/buses_lines')
 
 g = graphviz.Graph('Buses lines', filename='../utils/visualizations/buses_lines/buses_lines.gv', engine='sfdp')
 
@@ -66,8 +126,6 @@ g.edge('#7', '#10', label='2', color=colors[2])
 g.edge('#7', '#8', label='3', color=colors[3])
 g.edge('#8', '#9', label='5', color=colors[3])
 g.edge('#9', '#10', label='4', color=colors[3])
-
-g
 
 # creates pdf file
 # g.view()
