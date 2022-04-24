@@ -35,10 +35,10 @@ class GraphVisualizer:
 
 
 class LinesVisualizer:
-    def __init__(self, size: int, edges: tuple[any, any, int], lines: list[list[int]], stations: tuple):
+    def __init__(self, size: int, edges: tuple[any, any, int], lines: list[list[tuple]], stations: tuple):
         self.colors = create_colors_for_lines(len(lines))
         self.graph = graphviz.Graph('Buses lines', engine='sfdp')
-        self.graph.attr(label=('\n').join(['{} -> {}'.format(i, line) for i, line in enumerate(lines)]))
+        self.graph.attr(label='\n'.join(['{} -> {}'.format(i, [bs for bs, _ in line]) for i, line in enumerate(lines)]))
         self.add_interchange_stations(stations)
         self.add_edges(edges)
         self.add_lines(lines, edges)
@@ -54,7 +54,7 @@ class LinesVisualizer:
         for idx, line in enumerate(lines):
             i, j = 0, 1
             while j < len(line):
-                self.graph.edge('#' + str(line[i]), '#' + str(line[j]), color=self.colors[idx])
+                self.graph.edge('#' + str(line[i][0]), '#' + str(line[j][0]), color=self.colors[idx], label=str(line[i][1]))
                 i += 1
                 j += 1
 

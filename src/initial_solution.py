@@ -42,7 +42,7 @@ class CreateSolution:
                 return j
             possible_stop.add(j)
 
-    def make_lines(self, bus_stops: list[int]) -> list[int]:
+    def make_lines(self, bus_stops: list[int]) -> list[tuple]:
         length = len(bus_stops)
         matrix = self.create_dis_matrix(bus_stops)
         diam = 0
@@ -69,9 +69,15 @@ class CreateSolution:
             # line.append(bus_stops[v])
             # used.append(v)
 
-        return line
+        res_line = []
+        for i in range(len(line) - 1):
+            x, y = line[i], line[i+1]
+            res_line.append((x, self.graph.shortest_path(x, y)[0]))
+        res_line.append((line[-1], 0))
 
-    def create_init_solution(self, number_lines: int, number_bus: int) -> tuple[list[list[int]], list[int]]:
+        return res_line
+
+    def create_init_solution(self, number_lines: int, number_bus: int) -> tuple[list[list[tuple]], list[int]]:
         bus_stops = np.random.permutation(self.size)
         lists_of_stops = [list(arr) for arr in np.array_split(bus_stops, number_lines-1)]
         for list_stops in lists_of_stops:
