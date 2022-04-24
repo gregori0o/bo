@@ -36,7 +36,7 @@ class Graph:
         for u in interchange_points:
             self.vertices[u].set_interchange_point()
 
-    def shortest_path(self, s: int, t: int):
+    def shortest_path(self, s: int, t: int) -> tuple[int, list[int]]:
         if s == t:
             return 0, []
         queue = PriorityQueue()

@@ -8,15 +8,16 @@ class CreateSolution:
         self.interchange_points = graph.get_interchange_points()
         self.size = graph.size
 
-    def create_dis_matrix(self, vertices: list[int]) -> list[list[int, list[int]]]:
+    def create_dis_matrix(self, vertices: list[int]) -> list[list[tuple[int, list[int]]]]:
         length = len(vertices)
         matrix = [[None] * length for _ in range(length)]
         for i in range(length):
             for j in range(i, length):
-                matrix[i][j] = matrix[j][i] = self.graph.shortest_path(vertices[i], vertices[j])
+                matrix[i][j] = self.graph.shortest_path(vertices[i], vertices[j])
+                matrix[j][i] = self.graph.shortest_path(vertices[j], vertices[i])
         return matrix
 
-    def search_next(self, used: list[int], matrix: list[list[int, list[int]]], last: int, t: int) -> int:
+    def search_next(self, used: list[int], matrix: list[list[tuple[int, list[int]]]], last: int, t: int) -> int:
         if len(matrix) - len(used) == 1:
             return t
         nearest_to_last = []
@@ -54,28 +55,24 @@ class CreateSolution:
                     diam = value
         used = [s]
         line = [bus_stops[s]]
+        print(len(bus_stops))
         while len(used) < length:
             last = used[-1]
             v = self.search_next(used, matrix, last, t)
+            for bs in matrix[last][v][1][1:]:
+                if bs in line:
+                    continue
+                line.append(bs)
+                if bs in bus_stops:
+                    x = bus_stops.index(bs)
+                    used.append(x)
 
-            # if v == t:
-            #     line.append(bus_stops[v])
-            #     used.append(v)
-            #     break
-            #
-            # for bs in matrix[last][v][1][1:]:
-            #     if bs in line:
-            #         continue
-            #     line.append(bs)
-            #     if bs in bus_stops:
-            #         x = bus_stops.index(bs)
-            #         used.append(x)
+            # line.append(bus_stops[v])
+            # used.append(v)
 
-            line.append(bus_stops[v])
-            used.append(v)
         return line
 
-    def create_init_solution(self, number_lines: int, number_bus: int):
+    def create_init_solution(self, number_lines: int, number_bus: int) -> tuple[list[list[int]], list[int]]:
         bus_stops = np.random.permutation(self.size)
         lists_of_stops = [list(arr) for arr in np.array_split(bus_stops, number_lines)]
         for list_stops in lists_of_stops:
