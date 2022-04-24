@@ -1,6 +1,6 @@
 from base_structure import Graph
 from initial_solution import CreateSolution
-
+from json_parser import Parser
 
 size = 10
 edges = [
@@ -28,6 +28,9 @@ def main():
     init = CreateSolution(graph)
     lines, buses = init.create_init_solution(3, 20)
     print(lines, buses)
+
+    _parser = Parser("../utils/graphs/example.json")
+    print(_parser.get_data())
 
 
 if __name__ == '__main__':
