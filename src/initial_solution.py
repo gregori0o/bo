@@ -55,7 +55,6 @@ class CreateSolution:
                     diam = value
         used = [s]
         line = [bus_stops[s]]
-        print(len(bus_stops))
         while len(used) < length:
             last = used[-1]
             v = self.search_next(used, matrix, last, t)
@@ -74,11 +73,12 @@ class CreateSolution:
 
     def create_init_solution(self, number_lines: int, number_bus: int) -> tuple[list[list[int]], list[int]]:
         bus_stops = np.random.permutation(self.size)
-        lists_of_stops = [list(arr) for arr in np.array_split(bus_stops, number_lines)]
+        lists_of_stops = [list(arr) for arr in np.array_split(bus_stops, number_lines-1)]
         for list_stops in lists_of_stops:
             point = np.random.choice(self.interchange_points)
             if point not in list_stops:
                 list_stops.append(point)
+        lists_of_stops.append(self.interchange_points)
         lines = [self.make_lines(list_stops) for list_stops in lists_of_stops]
         k = number_bus % number_lines
         num = number_bus // number_lines
