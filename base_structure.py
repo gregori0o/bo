@@ -9,10 +9,10 @@ class Vertex:
         self.neighbours = []
         self.interchange_point = False
 
-    def add_edge(self, vertex: Vertex, weight: int):
+    def add_edge(self, vertex: any, weight: int):
         self.neighbours.append((vertex, weight))
 
-    def get_neighbourhood(self) -> list[tuple[Vertex, int]]:
+    def get_neighbourhood(self) -> list[tuple[any, int]]:
         return self.neighbours
 
     def set_interchange_point(self, value: bool = True):
@@ -32,7 +32,13 @@ class Graph:
     def get_interchange_points(self) -> list[int]:
         return [vertex.index for vertex in self.vertices if vertex.interchange_point]
 
+    def set_interchange_points(self, interchange_points: list[int]):
+        for u in interchange_points:
+            self.vertices[u].set_interchange_point()
+
     def shortest_path(self, s: int, t: int):
+        if s == t:
+            return 0, []
         queue = PriorityQueue()
         parent = [None] * self.size
         dis = [np.inf] * self.size
@@ -40,7 +46,7 @@ class Graph:
         parent[s] = s
         dis[s] = 0
         queue.put((0, s))
-        while queue.not_empty():
+        while queue.not_empty:
             weight, v = queue.get()
             if v == t:
                 break
@@ -51,11 +57,12 @@ class Graph:
                 if dis[u.index] > dis[v] + w:
                     dis[u.index] = dis[v] + w
                     parent[u.index] = v
+                    queue.put((dis[u.index], u.index))
         path = []
         v = t
         while v != s:
             path.append(v)
             v = parent[v]
         path.append(s)
-        path = reversed(path)
-        return path, dis[t]
+        path.reverse()
+        return dis[t], path
