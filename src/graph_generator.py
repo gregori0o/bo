@@ -51,13 +51,15 @@ class GraphGenerator:
         if counter != self.vertices:
             print("ERROR WITH SPLITTING COMPONENTS!")
 
-        for component in components.values():
+        for component in components.copy().values():
+            print(component)
             u = sample(components[rep[0]], 1)[0]
             v = sample(component, 1)[0]
             if rep[u] != rep[v]:
+                components[rep[u]].update(components[rep[v]])
+                merged = components.pop(rep[v], None)
+                if merged:
+                    for item in merged:
+                        rep[item] = rep[u]
                 self.edges_list.append((u, v))
-
-        self.find_components(components, rep) # only for check
-        if len(components) > 1:
-            print("ERROR WITH APPENDING CONNECTIONS")
 
