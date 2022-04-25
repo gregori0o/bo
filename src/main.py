@@ -2,10 +2,13 @@ from base_structure import Graph
 from initial_solution import CreateSolution
 from json_parser import Parser
 from src.visualization import GraphVisualizer, LinesVisualizer, SolutionVisualizer
+from graph_generator import GraphGenerator
 
 
 def main():
-    _parser = Parser("utils/graphs/g1.json")
+    g = GraphGenerator(20, 11)
+    g.generate_graph_with_all_weights_equal("../utils/graphs/example.json")
+    _parser = Parser("../utils/graphs/example.json")
     interchange_points = _parser.get_interchange_points()
     size = _parser.get_size()
     edges = _parser.get_edges()
@@ -16,13 +19,15 @@ def main():
     init = CreateSolution(graph)
     lines, buses = init.create_init_solution(3, 20)
     print(size, edges, interchange_points, lines, buses)
+    print(lines)
+    print(buses)
 
-    graph_vis = GraphVisualizer(size, edges)
-    graph_vis.save('graph')
+    # graph_vis = GraphVisualizer(size, edges)
+    # graph_vis.save('graph')
 
-    for i, line in enumerate(lines):
-        lines_vis = LinesVisualizer(size, edges, [line], interchange_points)
-        lines_vis.save('line{}'.format(i))
+    # for i, line in enumerate(lines):
+    #    lines_vis = LinesVisualizer(size, edges, [line], interchange_points)
+    #    lines_vis.save('line{}'.format(i))
 
     # solution_vis = SolutionVisualizer(size, edges, lines, interchange_points)
     # solution_vis.save('test')
