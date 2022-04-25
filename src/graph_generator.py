@@ -14,13 +14,13 @@ class GraphGenerator:
     def generate_graph_with_all_weights_equal(self, path):
         for v in range(self.vertices):
             self.graph["vertices"].append({"index": v, "interchange_point": v in self.interchange_points, "neighbours": []})
+        print(self.edges_list)
         for e in self.edges_list:
             u, v = e
             self.graph["vertices"][u]["neighbours"].append({"index": v, "weight": 1})
             self.graph["vertices"][v]["neighbours"].append({"index": u, "weight": 1})
         with open(path, "w") as file:
             json.dump(self.graph, file)
-
 
     def find_components(self, components, rep):
         for e in self.edges_list:
@@ -34,7 +34,6 @@ class GraphGenerator:
             if merged:
                 for item in merged:
                     rep[item] = rep[u]
-
 
     def make_reachable(self):
         components = {}
@@ -55,7 +54,8 @@ class GraphGenerator:
         for component in components.values():
             u = sample(components[rep[0]], 1)[0]
             v = sample(component, 1)[0]
-            self.edges_list.append((u, v))
+            if rep[u] != rep[v]:
+                self.edges_list.append((u, v))
 
         self.find_components(components, rep) # only for check
         if len(components) > 1:
