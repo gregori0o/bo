@@ -6,7 +6,7 @@ from graph_generator import GraphGenerator
 
 
 def main():
-    g = GraphGenerator(20, 11)
+    g = GraphGenerator(20, 22)
     g.generate_graph_with_all_weights_equal("../utils/graphs/example.json")
     _parser = Parser("../utils/graphs/example.json")
     interchange_points = _parser.get_interchange_points()
@@ -19,8 +19,6 @@ def main():
     init = CreateSolution(graph)
     lines, buses = init.create_init_solution(3, 20)
     print(size, edges, interchange_points, lines, buses)
-    print(lines)
-    print(buses)
 
     # graph_vis = GraphVisualizer(size, edges)
     # graph_vis.save('graph')

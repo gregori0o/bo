@@ -14,7 +14,6 @@ class GraphGenerator:
     def generate_graph_with_all_weights_equal(self, path):
         for v in range(self.vertices):
             self.graph["vertices"].append({"index": v, "interchange_point": v in self.interchange_points, "neighbours": []})
-        print(self.edges_list)
         for e in self.edges_list:
             u, v = e
             self.graph["vertices"][u]["neighbours"].append({"index": v, "weight": 1})
@@ -52,7 +51,6 @@ class GraphGenerator:
             print("ERROR WITH SPLITTING COMPONENTS!")
 
         for component in components.copy().values():
-            print(component)
             u = sample(components[rep[0]], 1)[0]
             v = sample(component, 1)[0]
             if rep[u] != rep[v]:
