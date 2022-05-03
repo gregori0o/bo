@@ -67,7 +67,7 @@ def is_line_better(old, new):
     return abs(len(new) - desired_len) <= abs(len(old) - desired_len)
 
 
-class Cockroach_solution:
+class CockroachSolution:
     def __init__(self, graph, num_cockroaches=10, num_lines=5):
         self.solution_creator = CreateSolution(graph)
 
@@ -129,7 +129,7 @@ def main():
         graph.add_edge(i, j, w)
     graph.set_interchange_points(interchange_points)
 
-    solution = Cockroach_solution(graph)
+    solution = CockroachSolution(graph)
 
     solution.chase_swarming()
 
