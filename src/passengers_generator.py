@@ -11,8 +11,8 @@ class Passengers:
         travels = []
         for passenger in range(self.num_of_passengers):
             travels.append([randint(self.num_of_stations),
-                            randint(self.time),
-                            randint(self.num_of_stations)])
+                            randint(self.num_of_stations),
+                            randint(self.time)])
         return travels
 
     def get_travels(self) -> list[[int, int, int]]:
