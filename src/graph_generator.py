@@ -11,15 +11,13 @@ class GraphGenerator:
         self.edges_list = sample([(x, y) for x in range(self.vertices) for y in range(self.vertices) if x < y], self.edges)
         self.make_reachable()
 
-    def generate_graph_with_all_weights_equal(self, path):
+    def generate_graph_with_all_weights_equal(self):
         for v in range(self.vertices):
             self.graph["vertices"].append({"index": v, "interchange_point": v in self.interchange_points, "neighbours": []})
         for e in self.edges_list:
             u, v = e
             self.graph["vertices"][u]["neighbours"].append({"index": v, "weight": 1})
             self.graph["vertices"][v]["neighbours"].append({"index": u, "weight": 1})
-        with open(path, "w") as file:
-            json.dump(self.graph, file)
 
     def find_components(self, components, rep):
         for e in self.edges_list:
@@ -51,8 +49,8 @@ class GraphGenerator:
             print("ERROR WITH SPLITTING COMPONENTS!")
 
         for component in components.copy().values():
-            u = sample(components[rep[0]], 1)[0]
-            v = sample(component, 1)[0]
+            u = sample(list(components[rep[0]]), 1)[0]
+            v = sample(list(component), 1)[0]
             if rep[u] != rep[v]:
                 components[rep[u]].update(components[rep[v]])
                 merged = components.pop(rep[v], None)
@@ -61,3 +59,16 @@ class GraphGenerator:
                         rep[item] = rep[u]
                 self.edges_list.append((u, v))
 
+    def save(self, filename: str):
+        with open("../utils/graphs/" + filename + ".json", "w") as file:
+            json.dump(self.graph, file, indent=4)
+
+# sample execution
+# g = GraphGenerator(10, 20)
+# g.generate_graph_with_all_weights_equal()
+# g.save("filename")
+# print(g.graph)
+# print(f"edges_list={g.edges_list}")
+# print(f"vertices={g.vertices}")
+# print(f"edges={g.edges}")
+# print(f"interchange_points={g.interchange_points}")
