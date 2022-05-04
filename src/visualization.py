@@ -68,39 +68,3 @@ class LinesVisualizer:
 
     def save(self, filename: str):
         self.graph.view(filename=filename, directory='utils/visualizations/lines')
-
-
-class SolutionVisualizer:
-    def __init__(self, size: int, edges: tuple[any, any, int], lines: tuple, stations: tuple):
-        self.colors = create_colors_for_lines(len(lines))
-        self.graph = graphviz.Graph('Buses lines', engine='sfdp')
-        self.add_interchange_stations(stations)
-        self.add_lines_segments(lines, edges)
-        # self.add_unattended_line_segments(edges)
-
-    def add_interchange_stations(self, stations):
-        self.graph.attr('node', shape='doubleoctagon', style='filled', fillcolor='lightcoral', fixedsize='true')
-        for no_station in stations:
-            self.graph.node('#' + str(no_station))
-
-    def add_lines_segments(self, lines, edges):
-        self.graph.attr('edge', penwidth='5')
-        for idx, line in enumerate(lines):
-            i, j = 0, 1
-            while j < len(line):
-                for x, y, val in edges:
-                    if (line[i] == x and line[j] == y) or (line[i] == x and line[j] == y):
-                        self.graph.edge('#' + str(line[i]), '#' + str(line[j]), label=str(val), color=self.colors[idx])
-                        break
-                i += 1
-                j += 1
-
-    def add_unattended_line_segments(self, edges):
-        self.graph.attr('node', shape='circle', style='filled', fillcolor='lightskyblue1')
-
-    def show(self):
-        return self.graph
-
-    def save(self, filename: str):
-        self.graph.view(filename=filename, directory='utils/visualizations/buses_lines')
-
