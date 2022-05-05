@@ -1,4 +1,4 @@
-from numpy.random import randint
+from random import sample
 
 class Passengers:
     def __init__(self, num_of_stations: int, num_of_passengers: int):
@@ -10,15 +10,15 @@ class Passengers:
     def random_generate(self):
         travels = []
         for passenger in range(self.num_of_passengers):
-            travels.append([randint(self.num_of_stations),
-                            randint(self.num_of_stations),
-                            randint(self.time)])
+            from_, to_ = sample(range(self.num_of_stations), 2)
+            time = sample(range(self.time), 1)[0]
+            travels.append([from_, to_, time])
         return travels
 
     def get_travels(self) -> list[[int, int, int]]:
         return self.travels
 
 # example
-# p = Passengers(5, 6)
+# p = Passengers(5, 10)
 # travels = p.get_travels()
 # print(travels)

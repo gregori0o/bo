@@ -12,62 +12,120 @@ for i, j, w in edges:
 graph.set_interchange_points(interchange_points)
 init = CreateSolution(graph)
 lines, buses = init.create_init_solution(3, 20)
-print(size, edges, interchange_points, lines, buses, sep="\n")
-print(f"size={size}")
-print(f"edges={edges}")
-print(f"interchange_points={interchange_points}")
-print(f"lines={lines}")
-print(f"buses={buses}")
+# print(f"size={size}")
+# print(f"edges={edges}")
+# print(f"interchange_points={interchange_points}")
+# print(f"lines={lines}")
+# print(f"buses={buses}")
 
 from itertools import combinations
 from passengers_generator import Passengers
+import numpy as np
 
-# TODO not yet done
 class LineResult:
     stopping_time = 1
     turning_back_time = 3
 
-    def __init__(self, size: int,
-                      edges: list[tuple[int, int, int]],
-                      interchange_points: list,
-                      lines: list[list[tuple[int, int]]],
-                      buses: list[int],
-                      travels: list[[int, int, int]]):
-        self.size = size
-        self.edges = edges
+    def __init__(self, interchange_points: list,
+                       lines: list[list[tuple[int, int]]],
+                       buses: list[int],
+                       travels: list[[int, int, int]]):
         self.interchange_points = interchange_points
-        # self.lines = lines
+        self.lines = lines
+        self.line_sets = self.bus_stops_sets_for_lines()
         self.buses = buses
-        self.travels = travels
 
         (self.in_dir_time,
          self.in_opp_dir_time,
-         self.time_between_buses) = self.schedule(lines)
+         self.bus_travel_time,
+         self.time_between_buses) = self.schedule()
 
-    def schedule(self, lines):
-        in_dir_time = [[None for _ in range(len(line))] for line in lines]
-        in_opp_dir_time = [[None for _ in range(len(line))] for line in lines]
-        time_between_buses = [None for _ in range(len(lines))]
-        for line_idx, line in enumerate(lines):
+        self.total_time = 0
+        for travel in travels:
+            travel_time = self.calculate_travel_time(travel[0], travel[1], travel[2])
+            self.total_time += travel_time
+        self.average_time = self.total_time / len(travels)
+
+    def bus_stops_sets_for_lines(self):
+        line_sets = []
+        for line in range(len(self.lines)):
+            line_set = set()
+            for bus_stop in self.lines[line]:
+                line_set |= {bus_stop[0]}
+            line_sets.append(line_set)
+        return line_sets
+
+    def schedule(self):
+        in_dir_time = [[None for _ in range(len(line))] for line in self.lines]
+        in_opp_dir_time = [[None for _ in range(len(line))] for line in self.lines]
+        bus_travel_time = [None for _ in range(len(self.lines))]
+        time_between_buses = [None for _ in range(len(self.lines))]
+        for line_idx, line in enumerate(self.lines):
             time = 0
             for station_idx, station in enumerate(line):
                 in_dir_time[line_idx][station_idx] = time
                 time += station[1] + self.stopping_time
             time += self.turning_back_time
-            for station_idx, station in enumerate(list(reversed(line))):
+            for station_idx, station in reversed(list(enumerate(line))):
                 in_opp_dir_time[line_idx][station_idx] = time
                 time += station[1] + self.stopping_time
             time += self.turning_back_time
+            bus_travel_time[line_idx] = time
             time_between_buses[line_idx] = time // self.buses[line_idx]
-        return in_dir_time, in_opp_dir_time, time_between_buses
+        return in_dir_time, in_opp_dir_time, bus_travel_time, time_between_buses
 
 
-    def calculate_travel_time(self, from_, to_, start_time):
-        pass
+    def calculate_travel_time(self, start_point, end_point, start_time):
+        def check_connection(a, b, line):
+            if a in line and b in line:
+                return True
+            return False
+
+        def direct_time(from_, to_, start_time):
+            best_end_time = np.inf
+            for line_idx, line in enumerate(self.line_sets):
+                if check_connection(from_, to_, line):
+                    bus_stops = np.array(self.lines[line_idx])[:, 0]
+                    start_idx = np.where(bus_stops == from_)[0][0]
+                    end_idx = np.where(bus_stops == to_)[0][0]
+                    if start_idx < end_idx:
+                        arrival_time = self.in_dir_time[line_idx][start_idx]
+                    else:
+                        arrival_time = self.in_opp_dir_time[line_idx][start_idx]
+                    while arrival_time + self.bus_travel_time[line_idx] < start_time:
+                        arrival_time += self.bus_travel_time[line_idx]
+                    while arrival_time < start_time:
+                        arrival_time += self.time_between_buses[line_idx]
+                    end_time = arrival_time + abs(self.in_dir_time[line_idx][start_idx] - self.in_dir_time[line_idx][end_idx])
+                    if end_time < best_end_time:
+                        best_end_time = end_time
+            return best_end_time
+
+        def time_with_transfers(bus_stops):
+            end_time = start_time
+            for i in range(len(bus_stops)-1):
+                end_time = direct_time(bus_stops[i], bus_stops[i+1], end_time)
+                if end_time == np.inf:
+                    return np.inf
+            return end_time - start_time
+
+        best_time = np.inf
+        for change_count in range(5):
+            for transfers in combinations(self.interchange_points, change_count):
+                bus_stops = [start_point] + list(transfers) + [end_point]
+                time = time_with_transfers(bus_stops)
+                if time < best_time:
+                    best_time = time
+                # print(f"{best_time=}, {start_point=}, {end_point=}")
+        return best_time
 
 p = Passengers(size, 100)
 travels = p.travels
-r = LineResult(size, edges, interchange_points, lines, buses, travels)
-print(f"in_dir_time={r.in_dir_time}")
-print(f"in_opp_dir_time={r.in_opp_dir_time}")
-print(f"time_between_buses={r.time_between_buses}")
+line = LineResult(interchange_points, lines, buses, travels)
+print(f"{line.total_time=}")
+print(f"{line.average_time=}")
+# print(f"{travels=}")
+# print(f"in_dir_time={line.in_dir_time}")
+# print(f"in_opp_dir_time={line.in_opp_dir_time}")
+# print(f"bus_travel_time={line.bus_travel_time}")
+# print(f"time_between_buses={line.time_between_buses}")
