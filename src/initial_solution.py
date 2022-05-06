@@ -1,5 +1,6 @@
 import numpy as np
 from base_structure import Graph
+from typing import List
 
 
 class CreateSolution:
@@ -86,7 +87,34 @@ class CreateSolution:
                 list_stops.append(point)
         lists_of_stops.append(self.interchange_points)
         lines = [self.make_lines(list_stops) for list_stops in lists_of_stops]
-        k = number_bus % number_lines
-        num = number_bus // number_lines
-        buses = [num + 1] * k + [num] * (number_lines - k)
-        return lines, buses
+        divider = DivideBuses(number_lines, number_bus)
+        buses = divider.get_one_solution()
+        return lines, list(buses)
+
+
+class DivideBuses:
+    def __init__(self, num_lines: int, num_buses: int):
+        self.num_buses = num_buses
+        self.num_lines = num_lines
+
+    def get_one_solution(self, scale: float = 3.0) -> np.ndarray:
+        result = np.ones(self.num_lines)
+        mean = (self.num_buses - self.num_lines) // self.num_lines
+        samples = np.random.normal(loc=mean, scale=scale, size=self.num_lines).astype(int)
+        samples[samples < 0] = 0
+        diff = self.num_buses - self.num_lines - sum(samples)
+        change = 1 if diff > 0 else -1
+        for i in range(abs(diff)):
+            while True:
+                idx = np.random.randint(self.num_lines)
+                if samples[idx] + change >= 0:
+                    samples[idx] += change
+                    break
+        return result + samples
+
+    def get_solutions(self, k: int) -> List[np.ndarray]:
+        result = []
+        for _ in range(k):
+            scale = (np.random.random_sample() + 0.5) * (self.num_buses / self.num_lines)
+            result.append(self.get_one_solution(scale))
+        return result
