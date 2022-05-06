@@ -3,7 +3,7 @@ import random
 from base_structure import Graph
 from initial_solution import CreateSolution
 from json_parser import Parser
-
+from pprint import pprint
 
 class Cockroach:
     __id = 0
@@ -41,15 +41,20 @@ class Cockroach:
 
         self.visible_cockroaches = [c for c in all_cockroaches if c.id != self.id and check_if_visible(c)]
 
+    @staticmethod
+    def __get_metric_value(cockroach):
+        """
+
+        :type cockroach: Cockroach
+        """
+        return cockroach.metric_value
+
     def get_best_visible_cockroach(self):
-        def get_metric_value(cockroach):
-            """
+        return max(self.visible_cockroaches, key=self.__get_metric_value)
 
-            :type cockroach: Cockroach
-            """
-            return cockroach.metric_value
-
-        return max(self.visible_cockroaches, key=get_metric_value)
+    @staticmethod
+    def get_best_global_cockroach(all_cockroaches):
+        return max(all_cockroaches, key=Cockroach.__get_metric_value)
 
     def __evaluate_metric_value(self):
         # todo evaluating value
@@ -58,6 +63,9 @@ class Cockroach:
 
     def get_random_common_edge(self, best_visible):
         return random.choice(tuple(self.edges.keys() & best_visible.edges.keys()))
+
+    def __eq__(self, other):
+        return self.lines == other.lines
 
 
 def is_line_better(old, new):
@@ -78,9 +86,15 @@ class CockroachSolution:
 
             if random.random() >= .5:
                 for i in range(len(lines)):
-                        lines[i].reverse()
+                    lines[i].reverse()
 
             self.cockroaches.append(Cockroach(lines))
+
+    def solve(self, n_iterations=10):
+        for _ in range(n_iterations):
+            self.chase_swarming()
+
+        pprint(Cockroach.get_best_global_cockroach(self.cockroaches))
 
     def chase_swarming(self):
         for cockroach in self.cockroaches:
@@ -92,11 +106,20 @@ class CockroachSolution:
 
             best_visible = cockroach.get_best_visible_cockroach()
 
+            if best_visible.metric_value <= cockroach.metric_value:
+                print("GLOBAL")
+                best_visible = cockroach.get_best_global_cockroach(self.cockroaches)
+
+            if best_visible == cockroach:
+                print("SAME")
+                continue
+
             random_edge = cockroach.get_random_common_edge(best_visible)
             line_no, edge_no = cockroach.edges[random_edge]
             best_line_no, best_edge_no = best_visible.edges[random_edge]
-            # print(f"{cockroach.id}: edge {random_edge} line_no {line_no} \t best {best_visible.id} line_no {best_line_no}")
-            #
+            print(
+                f"{cockroach.id}: edge {random_edge} line_no {line_no} \t best {best_visible.id} line_no {best_line_no}")
+
             line = cockroach.lines[line_no]
             best_line = best_visible.lines[best_line_no]
 
@@ -107,17 +130,18 @@ class CockroachSolution:
                                                           best_line[best_edge_no + 1:])
                                                       else len(best_line[
                                                                best_edge_no + 1:]))]  # todo save order... or no?
-            # print(f"starting {new_line_start_stops} added {new_line_from_best_stops}")
+            print(f"starting {new_line_start_stops} added {new_line_from_best_stops}")
 
             # final_stops = new_line_start_stops + new_line_from_best_stops
-            final_stops = new_line_start_stops + [stop for stop in new_line_from_best_stops if stop not in new_line_start_stops] # to drugie dlatego zeby sie nie dublowaly - wtedy sie zacina generowanie
+            final_stops = new_line_start_stops + [stop for stop in new_line_from_best_stops if
+                                                  stop not in new_line_start_stops]  # to drugie dlatego zeby sie nie dublowaly - wtedy sie zacina generowanie
             final_stops += [line[-1][0]] if line[-1][0] not in new_line_from_best_stops else []
-            # print(f"final stops { final_stops }")
+            print(f"final stops {final_stops}")
 
             new_line = self.solution_creator.make_lines(final_stops)
 
-            # print(f"{line}\n{best_line}")
-            # print(f"\t{new_line}\n")
+            print(f"{line}\n{best_line}")
+            print(f"\t{new_line}\n")
 
             if is_line_better(line, new_line):
                 cockroach.lines[line_no] = new_line
@@ -137,7 +161,7 @@ def main():
 
     solution = CockroachSolution(graph)
 
-    solution.chase_swarming()
+    solution.solve(15)
 
 
 if __name__ == '__main__':
