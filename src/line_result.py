@@ -1,5 +1,4 @@
 from itertools import combinations
-from passengers_generator import Passengers
 import numpy as np
 
 class LineResult:
@@ -103,6 +102,7 @@ class LineResult:
 # from json_parser import Parser
 # from base_structure import Graph
 # from initial_solution import CreateSolution
+# from passengers_generator import Passengers
 #
 # _parser = Parser("../utils/graphs/g1.json")
 # interchange_points = _parser.get_interchange_points()
