@@ -23,5 +23,3 @@ class Parser:
 
     def get_size(self):
         return len(self.vertices)
-
-

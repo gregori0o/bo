@@ -1,23 +1,3 @@
-from json_parser import Parser
-from base_structure import Graph
-from initial_solution import CreateSolution
-
-_parser = Parser("../utils/graphs/g1.json")
-interchange_points = _parser.get_interchange_points()
-size = _parser.get_size()
-edges = _parser.get_edges()
-graph = Graph(size)
-for i, j, w in edges:
-    graph.add_edge(i, j, w)
-graph.set_interchange_points(interchange_points)
-init = CreateSolution(graph)
-lines, buses = init.create_init_solution(3, 20)
-# print(f"size={size}")
-# print(f"edges={edges}")
-# print(f"interchange_points={interchange_points}")
-# print(f"lines={lines}")
-# print(f"buses={buses}")
-
 from itertools import combinations
 from passengers_generator import Passengers
 import numpy as np
@@ -119,13 +99,36 @@ class LineResult:
                 # print(f"{best_time=}, {start_point=}, {end_point=}")
         return best_time
 
-p = Passengers(size, 100)
-travels = p.travels
-line = LineResult(interchange_points, lines, buses, travels)
-print(f"{line.total_time=}")
-print(f"{line.average_time=}")
+# sample execution
+# from json_parser import Parser
+# from base_structure import Graph
+# from initial_solution import CreateSolution
+#
+# _parser = Parser("../utils/graphs/g1.json")
+# interchange_points = _parser.get_interchange_points()
+# size = _parser.get_size()
+# edges = _parser.get_edges()
+# graph = Graph(size)
+# for i, j, w in edges:
+#     graph.add_edge(i, j, w)
+# graph.set_interchange_points(interchange_points)
+# init = CreateSolution(graph)
+# lines, buses = init.create_init_solution(3, 20)
+# p = Passengers(size, 100)
+# travels = p.travels
+# line = LineResult(interchange_points, lines, buses, travels)
+#
+#
+# print(f"size={size}")
+# print(f"edges={edges}")
+# print(f"{interchange_points=}")
+# print(f"lines={lines}")
+# print(f"buses={buses}")
 # print(f"{travels=}")
-# print(f"in_dir_time={line.in_dir_time}")
-# print(f"in_opp_dir_time={line.in_opp_dir_time}")
-# print(f"bus_travel_time={line.bus_travel_time}")
-# print(f"time_between_buses={line.time_between_buses}")
+# print(f"{line.in_dir_time=}")
+# print(f"{line.in_opp_dir_time=}")
+# print(f"{line.bus_travel_time=}")
+# print(f"{line.time_between_buses=}")
+#
+# print(f"{line.total_time=}")
+# print(f"{line.average_time=}")
