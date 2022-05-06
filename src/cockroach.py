@@ -75,6 +75,11 @@ class CockroachSolution:
 
         for i in range(num_cockroaches):
             lines, buses = self.solution_creator.create_init_solution(num_lines, 20)
+
+            if random.random() >= .5:
+                for i in range(len(lines)):
+                        lines[i].reverse()
+
             self.cockroaches.append(Cockroach(lines))
 
     def chase_swarming(self):
@@ -91,7 +96,7 @@ class CockroachSolution:
             line_no, edge_no = cockroach.edges[random_edge]
             best_line_no, best_edge_no = best_visible.edges[random_edge]
             # print(f"{cockroach.id}: edge {random_edge} line_no {line_no} \t best {best_visible.id} line_no {best_line_no}")
-
+            #
             line = cockroach.lines[line_no]
             best_line = best_visible.lines[best_line_no]
 
@@ -104,7 +109,8 @@ class CockroachSolution:
                                                                best_edge_no + 1:]))]  # todo save order... or no?
             # print(f"starting {new_line_start_stops} added {new_line_from_best_stops}")
 
-            final_stops = new_line_start_stops + new_line_from_best_stops
+            # final_stops = new_line_start_stops + new_line_from_best_stops
+            final_stops = new_line_start_stops + [stop for stop in new_line_from_best_stops if stop not in new_line_start_stops] # to drugie dlatego zeby sie nie dublowaly - wtedy sie zacina generowanie
             final_stops += [line[-1][0]] if line[-1][0] not in new_line_from_best_stops else []
             # print(f"final stops { final_stops }")
 
