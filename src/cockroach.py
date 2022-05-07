@@ -11,6 +11,7 @@ from src.passengers_generator import Passengers
 
 MIN_COMMON = 8
 STEP_SIZE = 2
+MAX_UPDATE_RATIO = .5 # should be <= 0.5 !!!
 
 
 class Cockroach:
@@ -110,10 +111,13 @@ def get_stops_from_best_cockroach(best_edge_no, best_line):
 
 class CockroachSolution:
     def __init__(self, graph, num_cockroaches=10, num_lines=5, num_busses=20, num_passengers=100, min_common=8,
-                 step_size=2):
-        global MIN_COMMON, STEP_SIZE
+                 step_size=2, dispersing_update_ratio=.5):
+        global MIN_COMMON, STEP_SIZE, MAX_UPDATE_RATIO
         MIN_COMMON = min_common
         STEP_SIZE = step_size
+        MAX_UPDATE_RATIO = dispersing_update_ratio
+
+        self.stops = set(list(range(len(graph.vertices))))
 
         self.solution_creator = CreateSolution(graph)
 
@@ -133,6 +137,7 @@ class CockroachSolution:
     def solve(self, n_iterations=10):
         for _ in range(n_iterations):
             self.chase_swarming()
+            self.dispersing()
 
         pprint(self.get_best_global_cockroach().lines)
 
@@ -177,6 +182,33 @@ class CockroachSolution:
             new_cockroach = cockroach_from_new_line(cockroach, line_no, new_line)
 
             if cockroach < new_cockroach:
+                self.cockroaches[i] = new_cockroach
+
+    def dispersing(self):
+        for i in range(len(self.cockroaches)):
+            cockroach = self.cockroaches[i]
+
+            random_line = random.randint(0, len(cockroach.lines)-1) # choose line to change
+            line = cockroach.lines[random_line]
+            edges_num = len(line)
+            max_update_segments_num = int(MAX_UPDATE_RATIO * edges_num)
+
+            if random.random() > 0.5:   # remove some stops from one of ends
+                line.reverse()
+            stops = [segment[0] for segment in line]
+            if len(stops) > 2: # omit remove step if we destroy line in that way
+                stops_to_remove = random.randint(0, max_update_segments_num)
+                stops = stops[:edges_num - stops_to_remove]
+
+            stops_not_used = list(self.stops - set(stops))  # add some stops
+            sample_size = random.randint(0, min(max_update_segments_num, len(stops_not_used)))
+            stops_to_add = random.sample(stops_not_used, sample_size)
+            stops += stops_to_add
+
+            new_line = self.solution_creator.make_lines(stops) # make new line
+            new_cockroach = cockroach_from_new_line(cockroach, random_line, new_line)
+
+            if cockroach < new_cockroach:   # override cockroach if its better
                 self.cockroaches[i] = new_cockroach
 
     def get_best_global_cockroach(self):
