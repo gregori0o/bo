@@ -1,11 +1,7 @@
 from base_structure import Graph
-from initial_solution import CreateSolution
 from json_parser import Parser
-from src.passengers_generator import Passengers
 from src.solver import Solver
-from visualization import GraphVisualizer, LinesVisualizer
 from graph_generator import GraphGenerator
-from bees_algorithm import BeesAlgorithm
 
 
 def main():

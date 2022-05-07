@@ -1,5 +1,6 @@
 from itertools import combinations
 import numpy as np
+from math import ceil
 
 class LineResult:
     stopping_time = 1
@@ -61,6 +62,8 @@ class LineResult:
             return False
 
         def direct_time(from_, to_, start_time):
+            if from_ == to_:
+                return start_time
             best_end_time = np.inf
             for line_idx, line in enumerate(self.line_sets):
                 if check_connection(from_, to_, line):
@@ -71,10 +74,10 @@ class LineResult:
                         arrival_time = self.in_dir_time[line_idx][start_idx]
                     else:
                         arrival_time = self.in_opp_dir_time[line_idx][start_idx]
-                    while arrival_time + self.bus_travel_time[line_idx] < start_time:
-                        arrival_time += self.bus_travel_time[line_idx]
-                    while arrival_time < start_time:
-                        arrival_time += self.time_between_buses[line_idx]
+
+                    c = ceil((start_time - arrival_time) / self.time_between_buses[line_idx])
+                    arrival_time += c * self.time_between_buses[line_idx]
+
                     end_time = arrival_time + abs(self.in_dir_time[line_idx][start_idx] - self.in_dir_time[line_idx][end_idx])
                     if end_time < best_end_time:
                         best_end_time = end_time
