@@ -1,12 +1,13 @@
 import json
 from random import sample
+from passengers_generator import Passengers
 
 
 class GraphGenerator:
-    def __init__(self, vertices, min_edges):
+    def __init__(self, vertices, min_edges, num_passengers=100):
         self.vertices = vertices
         self.edges = min_edges
-        self.graph = {"vertices": []}
+        self.graph = {"vertices": [], "passengers": Passengers(self.vertices, num_passengers).travels}
         self.interchange_points = sample(range(vertices), 4)
         self.edges_list = sample([(x, y) for x in range(self.vertices) for y in range(self.vertices) if x < y], self.edges)
         self.make_reachable()

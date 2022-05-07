@@ -6,6 +6,7 @@ class Parser:
         with open(path, "r") as file:
             self.data = json.load(file)
             self.vertices = self.data["vertices"]
+            self.passengers = self.data.get("passengers", [])
 
     def get_edges(self):
         edges = []
@@ -23,3 +24,6 @@ class Parser:
 
     def get_size(self):
         return len(self.vertices)
+
+    def get_passengers(self):
+        return self.passengers
