@@ -128,10 +128,6 @@ class CockroachSolution:
         for i in range(num_cockroaches):
             lines, buses = self.solution_creator.create_init_solution(num_lines, num_busses)
 
-            if random.random() >= .5:
-                for i in range(len(lines)):
-                    lines[i].reverse()
-
             self.cockroaches.append(Cockroach(lines, buses, passengers, graph.get_interchange_points()))
 
     def solve(self, n_iterations=10):
@@ -172,6 +168,8 @@ class CockroachSolution:
             # print(f"starting {new_line_start_stops} added {new_line_from_best_stops}")
 
             final_stops = get_final_stops(line, new_line_from_best_stops, new_line_start_stops)
+            if random.random() >= .5:
+                final_stops.reverse()
             # print(f"final stops {final_stops}")
 
             new_line = self.solution_creator.make_lines(final_stops)
@@ -193,9 +191,10 @@ class CockroachSolution:
             edges_num = len(line)
             max_update_segments_num = int(MAX_UPDATE_RATIO * edges_num)
 
-            if random.random() > 0.5:   # remove some stops from one of ends
-                line.reverse()
             stops = [segment[0] for segment in line]
+            if random.random() > 0.5:   # remove some stops from one of ends
+                stops.reverse()
+
             if len(stops) > 2: # omit remove step if we destroy line in that way
                 stops_to_remove = random.randint(0, max_update_segments_num)
                 stops = stops[:edges_num - stops_to_remove]
