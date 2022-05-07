@@ -5,14 +5,14 @@ from typing import List, Optional, Dict, Tuple
 
 
 class BeesAlgorithm:
-    def __init__(self, num_lines: int, num_buses: int, num_bees: int, k: int, percent: float, data: Dict):
+    def __init__(self, num_lines: int, num_buses: int, data: Dict, num_bees: int = 100, num_transition: int = 2, percent_bees: float = 1/3):
         self.data = data
         self.num_lines = num_lines
         self.num_buses = num_buses
         self.num_bees = num_bees
-        self.population = DivideBuses(num_lines, num_buses).get_solutions(num_bees)
-        self.k = k
-        self.p = int(percent * num_bees)
+        self.population = DivideBuses(num_lines, num_buses).create_solutions(num_bees)
+        self.k = num_transition
+        self.p = min(max(int(percent_bees * num_bees), 1), num_bees)
 
     def get_cost(self, solution: np.ndarray) -> float:
         solver = LineResult(buses=list(solution), **self.data)
@@ -55,15 +55,17 @@ class BeesAlgorithm:
                 self.population.append(costs[0][1])
             else:
                 self.population.append(solution)
-        self.population += DivideBuses(self.num_lines, self.num_buses).get_solutions(free_bees)
+        self.population += DivideBuses(self.num_lines, self.num_buses).create_solutions(free_bees)
 
     def solve(self) -> Tuple[float, np.ndarray]:
         the_best = np.inf
         costs = self.cost_for_population()
         while (the_best - costs[0][0]) > 0:
             the_best = min(the_best, costs[0][0])
+            print(f"Actual minimum -> {the_best}")
             self.step(costs)
             costs = self.cost_for_population()
+        print(f"Minimum is -> {the_best}")
         return costs[0]
 
 
@@ -93,7 +95,7 @@ class BeesAlgorithm:
 #     'lines': lines,
 #     'travels': travels
 # }
-# solver = BeesAlgorithm(num_lines, num_buses, 10, 1, 0.3, data)
+# solver = BeesAlgorithm(num_lines, num_buses, data, 10, 1, 0.3)
 # result = solver.solve()
 #
 # print(f"size={size}")

@@ -36,6 +36,17 @@ class Graph:
         for u in interchange_points:
             self.vertices[u].set_interchange_point()
 
+    def get_edges(self) -> list[tuple]:
+        s = set()
+        for vertex in self.vertices:
+            v = vertex.index
+            for edge, w in vertex.get_neighbourhood():
+                u = edge.index
+                if (u, v, w) in s:
+                    continue
+                s.add((v, u, w))
+        return list(s)
+
     def shortest_path(self, s: int, t: int) -> tuple[int, list[int]]:
         if s == t:
             return 0, []

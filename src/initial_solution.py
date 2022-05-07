@@ -1,6 +1,6 @@
 import numpy as np
 from base_structure import Graph
-from typing import List
+from typing import List, Union
 
 
 class CreateSolution:
@@ -78,7 +78,7 @@ class CreateSolution:
 
         return res_line
 
-    def create_init_solution(self, number_lines: int, number_bus: int) -> tuple[list[list[tuple]], list[int]]:
+    def create_init_solution(self, number_lines: int, number_bus: int = None) -> Union[tuple[list[list[tuple]], list[int]], list[list[tuple]]]:
         bus_stops = np.random.permutation(self.size)
         lists_of_stops = [list(arr) for arr in np.array_split(bus_stops, number_lines-1)]
         for list_stops in lists_of_stops:
@@ -87,9 +87,18 @@ class CreateSolution:
                 list_stops.append(point)
         lists_of_stops.append(self.interchange_points)
         lines = [self.make_lines(list_stops) for list_stops in lists_of_stops]
+        if number_bus is None:
+            return lines
         divider = DivideBuses(number_lines, number_bus)
-        buses = divider.get_one_solution()
+        buses = divider.create_init_solution()
         return lines, list(buses)
+
+    def create_solutions(self, number_lines: int, k: int) -> list[list[list[tuple]]]:
+        result = []
+        for _ in range(k):
+            lines = self.create_init_solution(number_lines)
+            result.append(lines)
+        return result
 
 
 class DivideBuses:
@@ -97,7 +106,7 @@ class DivideBuses:
         self.num_buses = num_buses
         self.num_lines = num_lines
 
-    def get_one_solution(self, scale: float = 3.0) -> np.ndarray:
+    def create_init_solution(self, scale: float = 3.0) -> np.ndarray:
         result = np.ones(self.num_lines)
         mean = (self.num_buses - self.num_lines) // self.num_lines
         samples = np.random.normal(loc=mean, scale=scale, size=self.num_lines).astype(int)
@@ -112,9 +121,9 @@ class DivideBuses:
                     break
         return result + samples
 
-    def get_solutions(self, k: int) -> List[np.ndarray]:
+    def create_solutions(self, k: int) -> List[np.ndarray]:
         result = []
         for _ in range(k):
             scale = (np.random.random_sample() + 0.5) * (self.num_buses / self.num_lines)
-            result.append(self.get_one_solution(scale))
+            result.append(self.create_init_solution(scale))
         return result
