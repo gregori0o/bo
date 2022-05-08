@@ -69,7 +69,7 @@ class Cockroach:
     def __eq__(self, other):
         return self.lines == other.lines
 
-    def __lt__(self, other):
+    def __gt__(self, other):
         return self.metric_value < other.metric_value
 
 
@@ -132,6 +132,7 @@ class CockroachSolution:
 
     def solve(self, n_iterations=10):
         for _ in range(n_iterations):
+            print("BEST: {}".format(self.get_best_global_cockroach().metric_value))
             self.chase_swarming()
             self.dispersing()
 
@@ -228,7 +229,7 @@ def main():
 
     solution = CockroachSolution(graph)
 
-    solution.solve(2)
+    solution.solve()
 
 
 if __name__ == '__main__':
