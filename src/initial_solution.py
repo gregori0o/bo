@@ -69,9 +69,15 @@ class CreateSolution:
                         continue
                     used.append(x)
                 line.append(bs)
-        line.append(bus_stops[t])
+
             # line.append(bus_stops[v])
             # used.append(v)
+
+        last = used[-1]
+        for bs in matrix[last][t][1][1:]:
+            if bs in line:
+                continue
+            line.append(bs)
 
         res_line = []
         for i in range(len(line) - 1):

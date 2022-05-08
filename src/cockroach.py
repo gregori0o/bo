@@ -17,8 +17,10 @@ MAX_UPDATE_RATIO = .5 # should be <= 0.5 !!!
 class Cockroach:
     __id = 0
 
-    def __init__(self, lines: list, num_buses: int, passengers, interchange_points):
+    def __init__(self, lines: list, num_buses: int, passengers, interchange_points, num_to_test):
         self.visible_cockroaches: list[Cockroach] = []
+
+        self.num_to_test = num_to_test
 
         self.lines = lines
         self.edges = self.__update_edges()  # edge: no_line
@@ -57,7 +59,7 @@ class Cockroach:
         return max(self.visible_cockroaches)
 
     def __evaluate_metric_value(self):
-        list_buses = DivideBuses(len(self.lines), self.num_buses).create_solutions(5)
+        list_buses = DivideBuses(len(self.lines), self.num_buses).create_solutions(self.num_to_test)
         results = []
         for buses in list_buses:
             value = LineResult(self.interchange_points, self.lines, buses, self.passengers).average_time
@@ -79,7 +81,7 @@ class Cockroach:
 def cockroach_from_new_line(cockroach, line_no, new_line):
     new_lines = copy.deepcopy(cockroach.lines)
     new_lines[line_no] = new_line
-    new_cockroach = Cockroach(new_lines, cockroach.num_buses, cockroach.passengers, cockroach.interchange_points)
+    new_cockroach = Cockroach(new_lines, cockroach.num_buses, cockroach.passengers, cockroach.interchange_points, cockroach.num_to_test)
     return new_cockroach
 
 
@@ -114,13 +116,14 @@ def get_stops_from_best_cockroach(best_edge_no, best_line):
 
 class CockroachSolution:
     def __init__(self, graph, num_lines, num_busses, passengers, num_cockroaches=10, min_common=8,
-                 step_size=2, dispersing_update_ratio=.5):
+                 step_size=2, dispersing_update_ratio=.5, n_iterations=10, num_to_test=5):
         global MIN_COMMON, STEP_SIZE, MAX_UPDATE_RATIO
         MIN_COMMON = min_common
         STEP_SIZE = step_size
         MAX_UPDATE_RATIO = dispersing_update_ratio
 
         self.stops = set(list(range(len(graph.vertices))))
+        self.n_iterations = n_iterations
 
         self.solution_creator = CreateSolution(graph)
 
@@ -128,10 +131,10 @@ class CockroachSolution:
 
         list_lines = self.solution_creator.create_solutions(num_lines, num_cockroaches)
         for lines in list_lines:
-            self.cockroaches.append(Cockroach(lines, num_busses, passengers, graph.get_interchange_points()))
+            self.cockroaches.append(Cockroach(lines, num_busses, passengers, graph.get_interchange_points(), num_to_test))
 
-    def solve(self, n_iterations=10):
-        for _ in range(n_iterations):
+    def solve(self):
+        for _ in range(self.n_iterations):
             print("BEST: {}".format(self.get_best_global_cockroach().metric_value))
             self.chase_swarming()
             self.dispersing()
