@@ -136,7 +136,7 @@ class CockroachSolution:
             self.chase_swarming()
             self.dispersing()
 
-        pprint(self.get_best_global_cockroach().lines)
+        return self.get_best_global_cockroach().lines
 
     def chase_swarming(self):
         for i in range(len(self.cockroaches)):

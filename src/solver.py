@@ -3,6 +3,7 @@ from initial_solution import CreateSolution
 from typing import List
 from bees_algorithm import BeesAlgorithm
 from visualization import GraphVisualizer, LinesVisualizer
+from cockroach import CockroachSolution
 
 
 class Solver:
@@ -19,8 +20,8 @@ class Solver:
         print("End solving")
 
     def apply_cockroach_algorithm(self, **kwargs) -> List[List[tuple]]:
-        # do cockroach algorithm and find the best solution and return
-        return CreateSolution(self.graph).create_init_solution(self.num_lines)
+        solution = CockroachSolution(self.graph)
+        return solution.solve()
 
     def apply_bees_algorithm(self, **kwargs):
         data = {

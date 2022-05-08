@@ -1,0 +1,826 @@
+{
+    "vertices": [
+        {
+            "index": 0,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 1,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 1,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 0,
+                    "weight": 1
+                },
+                {
+                    "index": 4,
+                    "weight": 1
+                },
+                {
+                    "index": 16,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 2,
+            "interchange_point": true,
+            "neighbours": [
+                {
+                    "index": 15,
+                    "weight": 1
+                },
+                {
+                    "index": 12,
+                    "weight": 1
+                },
+                {
+                    "index": 9,
+                    "weight": 1
+                },
+                {
+                    "index": 11,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 3,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 9,
+                    "weight": 1
+                },
+                {
+                    "index": 11,
+                    "weight": 1
+                },
+                {
+                    "index": 19,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 4,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 1,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 5,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 13,
+                    "weight": 1
+                },
+                {
+                    "index": 15,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 6,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 15,
+                    "weight": 1
+                },
+                {
+                    "index": 17,
+                    "weight": 1
+                },
+                {
+                    "index": 8,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 7,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 13,
+                    "weight": 1
+                },
+                {
+                    "index": 14,
+                    "weight": 1
+                },
+                {
+                    "index": 16,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 8,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 6,
+                    "weight": 1
+                },
+                {
+                    "index": 13,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 9,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 13,
+                    "weight": 1
+                },
+                {
+                    "index": 2,
+                    "weight": 1
+                },
+                {
+                    "index": 11,
+                    "weight": 1
+                },
+                {
+                    "index": 3,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 10,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 16,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 11,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 9,
+                    "weight": 1
+                },
+                {
+                    "index": 2,
+                    "weight": 1
+                },
+                {
+                    "index": 3,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 12,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 18,
+                    "weight": 1
+                },
+                {
+                    "index": 2,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 13,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 9,
+                    "weight": 1
+                },
+                {
+                    "index": 7,
+                    "weight": 1
+                },
+                {
+                    "index": 8,
+                    "weight": 1
+                },
+                {
+                    "index": 5,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 14,
+            "interchange_point": true,
+            "neighbours": [
+                {
+                    "index": 7,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 15,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 6,
+                    "weight": 1
+                },
+                {
+                    "index": 2,
+                    "weight": 1
+                },
+                {
+                    "index": 17,
+                    "weight": 1
+                },
+                {
+                    "index": 5,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 16,
+            "interchange_point": true,
+            "neighbours": [
+                {
+                    "index": 17,
+                    "weight": 1
+                },
+                {
+                    "index": 10,
+                    "weight": 1
+                },
+                {
+                    "index": 7,
+                    "weight": 1
+                },
+                {
+                    "index": 1,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 17,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 16,
+                    "weight": 1
+                },
+                {
+                    "index": 6,
+                    "weight": 1
+                },
+                {
+                    "index": 15,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 18,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 12,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 19,
+            "interchange_point": true,
+            "neighbours": [
+                {
+                    "index": 3,
+                    "weight": 1
+                }
+            ]
+        }
+    ],
+    "passengers": [
+        [
+            12,
+            4,
+            1110
+        ],
+        [
+            17,
+            15,
+            647
+        ],
+        [
+            17,
+            19,
+            1263
+        ],
+        [
+            16,
+            9,
+            1368
+        ],
+        [
+            12,
+            0,
+            228
+        ],
+        [
+            6,
+            18,
+            1036
+        ],
+        [
+            19,
+            9,
+            540
+        ],
+        [
+            8,
+            2,
+            143
+        ],
+        [
+            16,
+            19,
+            375
+        ],
+        [
+            10,
+            0,
+            505
+        ],
+        [
+            10,
+            8,
+            123
+        ],
+        [
+            1,
+            3,
+            1302
+        ],
+        [
+            9,
+            12,
+            1057
+        ],
+        [
+            10,
+            16,
+            569
+        ],
+        [
+            8,
+            2,
+            1404
+        ],
+        [
+            11,
+            19,
+            721
+        ],
+        [
+            6,
+            19,
+            311
+        ],
+        [
+            7,
+            0,
+            805
+        ],
+        [
+            18,
+            1,
+            361
+        ],
+        [
+            17,
+            14,
+            311
+        ],
+        [
+            11,
+            17,
+            1142
+        ],
+        [
+            16,
+            15,
+            443
+        ],
+        [
+            12,
+            5,
+            1093
+        ],
+        [
+            2,
+            16,
+            179
+        ],
+        [
+            12,
+            3,
+            1251
+        ],
+        [
+            12,
+            19,
+            887
+        ],
+        [
+            10,
+            11,
+            624
+        ],
+        [
+            10,
+            1,
+            417
+        ],
+        [
+            14,
+            15,
+            367
+        ],
+        [
+            19,
+            12,
+            1194
+        ],
+        [
+            18,
+            10,
+            1134
+        ],
+        [
+            11,
+            1,
+            1277
+        ],
+        [
+            15,
+            12,
+            521
+        ],
+        [
+            17,
+            3,
+            930
+        ],
+        [
+            16,
+            10,
+            1421
+        ],
+        [
+            3,
+            12,
+            411
+        ],
+        [
+            14,
+            7,
+            1342
+        ],
+        [
+            14,
+            5,
+            1225
+        ],
+        [
+            11,
+            14,
+            1329
+        ],
+        [
+            7,
+            12,
+            581
+        ],
+        [
+            12,
+            17,
+            849
+        ],
+        [
+            17,
+            12,
+            645
+        ],
+        [
+            5,
+            16,
+            716
+        ],
+        [
+            1,
+            7,
+            572
+        ],
+        [
+            14,
+            7,
+            1216
+        ],
+        [
+            4,
+            18,
+            339
+        ],
+        [
+            2,
+            7,
+            1104
+        ],
+        [
+            18,
+            1,
+            78
+        ],
+        [
+            16,
+            6,
+            876
+        ],
+        [
+            14,
+            12,
+            1026
+        ],
+        [
+            15,
+            3,
+            1094
+        ],
+        [
+            1,
+            11,
+            150
+        ],
+        [
+            19,
+            9,
+            229
+        ],
+        [
+            10,
+            12,
+            1152
+        ],
+        [
+            2,
+            16,
+            1361
+        ],
+        [
+            9,
+            0,
+            852
+        ],
+        [
+            9,
+            3,
+            310
+        ],
+        [
+            8,
+            11,
+            794
+        ],
+        [
+            13,
+            6,
+            177
+        ],
+        [
+            7,
+            11,
+            100
+        ],
+        [
+            6,
+            3,
+            813
+        ],
+        [
+            5,
+            12,
+            749
+        ],
+        [
+            13,
+            0,
+            904
+        ],
+        [
+            2,
+            6,
+            996
+        ],
+        [
+            16,
+            4,
+            135
+        ],
+        [
+            2,
+            1,
+            783
+        ],
+        [
+            9,
+            14,
+            405
+        ],
+        [
+            8,
+            15,
+            27
+        ],
+        [
+            11,
+            7,
+            1419
+        ],
+        [
+            13,
+            10,
+            797
+        ],
+        [
+            9,
+            12,
+            254
+        ],
+        [
+            5,
+            13,
+            1408
+        ],
+        [
+            10,
+            2,
+            772
+        ],
+        [
+            14,
+            10,
+            404
+        ],
+        [
+            19,
+            16,
+            742
+        ],
+        [
+            5,
+            19,
+            892
+        ],
+        [
+            11,
+            19,
+            1031
+        ],
+        [
+            15,
+            10,
+            144
+        ],
+        [
+            9,
+            16,
+            273
+        ],
+        [
+            16,
+            13,
+            713
+        ],
+        [
+            18,
+            1,
+            829
+        ],
+        [
+            15,
+            0,
+            1116
+        ],
+        [
+            0,
+            16,
+            724
+        ],
+        [
+            8,
+            10,
+            1133
+        ],
+        [
+            6,
+            18,
+            1372
+        ],
+        [
+            19,
+            10,
+            409
+        ],
+        [
+            18,
+            12,
+            1062
+        ],
+        [
+            1,
+            6,
+            1200
+        ],
+        [
+            7,
+            1,
+            82
+        ],
+        [
+            8,
+            16,
+            76
+        ],
+        [
+            0,
+            12,
+            1078
+        ],
+        [
+            10,
+            5,
+            775
+        ],
+        [
+            19,
+            12,
+            37
+        ],
+        [
+            14,
+            18,
+            430
+        ],
+        [
+            14,
+            3,
+            889
+        ],
+        [
+            14,
+            4,
+            411
+        ],
+        [
+            14,
+            12,
+            1355
+        ],
+        [
+            18,
+            4,
+            181
+        ],
+        [
+            15,
+            3,
+            123
+        ],
+        [
+            11,
+            19,
+            494
+        ]
+    ]
+}
