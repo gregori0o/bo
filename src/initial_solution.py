@@ -56,17 +56,20 @@ class CreateSolution:
                     diam = value
         used = [s]
         line = [bus_stops[s]]
-        while len(used) < length:
+        while len(used) < length-1:
+            # print("USED: ", used)
             last = used[-1]
             v = self.search_next(used, matrix, last, t)
             for bs in matrix[last][v][1][1:]:
                 if bs in line:
                     continue
-                line.append(bs)
                 if bs in bus_stops:
                     x = bus_stops.index(bs)
+                    if x == t:
+                        continue
                     used.append(x)
-
+                line.append(bs)
+        line.append(bus_stops[t])
             # line.append(bus_stops[v])
             # used.append(v)
 
