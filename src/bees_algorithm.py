@@ -5,7 +5,7 @@ from typing import List, Optional, Dict, Tuple
 
 
 class BeesAlgorithm:
-    def __init__(self, num_lines: int, num_buses: int, data: Dict, num_bees: int = 100, num_transition: int = 2, percent_bees: float = 1/3):
+    def __init__(self, num_lines: int, num_buses: int, data: Dict, num_bees: int = 10, num_transition: int = 2, percent_bees: float = 1/3):
         self.data = data
         self.num_lines = num_lines
         self.num_buses = num_buses

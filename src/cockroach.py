@@ -58,6 +58,7 @@ class Cockroach:
         return max(self.visible_cockroaches)
 
     def __evaluate_metric_value(self):
+
         summary = LineResult(self.interchange_points, self.lines, self.buses, self.travels)
         self.metric_value = summary.average_time
 
@@ -229,7 +230,7 @@ def main():
 
     solution = CockroachSolution(graph)
 
-    solution.solve()
+    solution.solve(3)
 
 
 if __name__ == '__main__':

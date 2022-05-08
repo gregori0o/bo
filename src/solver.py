@@ -20,8 +20,8 @@ class Solver:
         print("End solving")
 
     def apply_cockroach_algorithm(self, **kwargs) -> List[List[tuple]]:
-        solution = CockroachSolution(self.graph)
-        return solution.solve()
+        solution = CockroachSolution(self.graph, num_lines=self.num_lines, num_busses=self.num_buses, num_passengers=len(self.passengers))
+        return solution.solve(3)
 
     def apply_bees_algorithm(self, **kwargs):
         data = {
@@ -36,5 +36,6 @@ class Solver:
         for i, line in enumerate(self.best_lines):
             LinesVisualizer(self.graph.size, self.graph.get_edges(), [line], self.graph.get_interchange_points()).save(f"{graph_name}_line_{i}")
 
+        print("Best lines: {}".format(self.best_lines))
         print(f"The best distribution of buses -> {self.best_buses}")
         print(f"Minimum cost is -> {self.cost}")
