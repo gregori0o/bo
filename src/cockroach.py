@@ -2,7 +2,7 @@ import copy
 import random
 
 from base_structure import Graph
-from initial_solution import CreateSolution
+from initial_solution import CreateSolution, DivideBuses
 from json_parser import Parser
 from pprint import pprint
 
@@ -17,15 +17,14 @@ MAX_UPDATE_RATIO = .5 # should be <= 0.5 !!!
 class Cockroach:
     __id = 0
 
-    def __init__(self, lines: list, buses, passengers, interchange_points):
+    def __init__(self, lines: list, num_buses: int, passengers, interchange_points):
         self.visible_cockroaches: list[Cockroach] = []
 
         self.lines = lines
         self.edges = self.__update_edges()  # edge: no_line
+        self.num_buses = num_buses
 
-        self.buses = buses
         self.passengers = passengers
-        self.travels = passengers.travels
         self.interchange_points = interchange_points
 
         self.metric_value = self.__evaluate_metric_value()
@@ -58,10 +57,13 @@ class Cockroach:
         return max(self.visible_cockroaches)
 
     def __evaluate_metric_value(self):
+        list_buses = DivideBuses(len(self.lines), self.num_buses).create_solutions(5)
+        results = []
+        for buses in list_buses:
+            value = LineResult(self.interchange_points, self.lines, buses, self.passengers).average_time
+            results.append(value)
 
-        summary = LineResult(self.interchange_points, self.lines, self.buses, self.travels)
-        self.metric_value = summary.average_time
-
+        self.metric_value = min(results)
         return self.metric_value
 
     def get_random_common_edge(self, best_visible):
@@ -77,7 +79,7 @@ class Cockroach:
 def cockroach_from_new_line(cockroach, line_no, new_line):
     new_lines = copy.deepcopy(cockroach.lines)
     new_lines[line_no] = new_line
-    new_cockroach = Cockroach(new_lines, cockroach.buses, cockroach.passengers, cockroach.interchange_points)
+    new_cockroach = Cockroach(new_lines, cockroach.num_buses, cockroach.passengers, cockroach.interchange_points)
     return new_cockroach
 
 
@@ -111,7 +113,7 @@ def get_stops_from_best_cockroach(best_edge_no, best_line):
 
 
 class CockroachSolution:
-    def __init__(self, graph, num_cockroaches=10, num_lines=5, num_busses=20, num_passengers=100, min_common=8,
+    def __init__(self, graph, num_lines, num_busses, passengers, num_cockroaches=10, min_common=8,
                  step_size=2, dispersing_update_ratio=.5):
         global MIN_COMMON, STEP_SIZE, MAX_UPDATE_RATIO
         MIN_COMMON = min_common
@@ -124,12 +126,9 @@ class CockroachSolution:
 
         self.cockroaches = []
 
-        passengers = Passengers(graph.size, num_passengers)
-
-        for i in range(num_cockroaches):
-            lines, buses = self.solution_creator.create_init_solution(num_lines, num_busses)
-
-            self.cockroaches.append(Cockroach(lines, buses, passengers, graph.get_interchange_points()))
+        list_lines = self.solution_creator.create_solutions(num_lines, num_cockroaches)
+        for lines in list_lines:
+            self.cockroaches.append(Cockroach(lines, num_busses, passengers, graph.get_interchange_points()))
 
     def solve(self, n_iterations=10):
         for _ in range(n_iterations):

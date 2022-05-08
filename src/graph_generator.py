@@ -61,7 +61,7 @@ class GraphGenerator:
                 self.edges_list.append((u, v))
 
     def save(self, filename: str):
-        with open("../utils/graphs/" + filename + ".json", "w") as file:
+        with open("utils/graphs/" + filename + ".json", "w") as file:
             json.dump(self.graph, file, indent=4)
 
 # sample execution

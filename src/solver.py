@@ -20,7 +20,7 @@ class Solver:
         print("End solving")
 
     def apply_cockroach_algorithm(self, **kwargs) -> List[List[tuple]]:
-        solution = CockroachSolution(self.graph, num_lines=self.num_lines, num_busses=self.num_buses, num_passengers=len(self.passengers))
+        solution = CockroachSolution(self.graph, num_lines=self.num_lines, num_busses=self.num_buses, passengers=self.passengers, **kwargs)
         return solution.solve(3)
 
     def apply_bees_algorithm(self, **kwargs):
@@ -33,6 +33,7 @@ class Solver:
 
     def visualize_solution(self, graph_name: str = 'solution_graph'):
         GraphVisualizer(self.graph.size, self.graph.get_edges()).save(graph_name)
+        LinesVisualizer(self.graph.size, self.graph.get_edges(), self.best_lines, self.graph.get_interchange_points()).save(f"{graph_name}_lines")
         for i, line in enumerate(self.best_lines):
             LinesVisualizer(self.graph.size, self.graph.get_edges(), [line], self.graph.get_interchange_points()).save(f"{graph_name}_line_{i}")
 

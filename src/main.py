@@ -9,7 +9,7 @@ def main():
     g = GraphGenerator(20, 22, 100)
     g.generate_graph_with_all_weights_equal()
     g.save("test")
-    _parser = Parser("../utils/graphs/g1.json")
+    _parser = Parser("utils/graphs/example.json")
     interchange_points = _parser.get_interchange_points()
     size = _parser.get_size()
     edges = _parser.get_edges()

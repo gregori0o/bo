@@ -16,7 +16,7 @@ class BeesAlgorithm:
 
     def get_cost(self, solution: np.ndarray) -> float:
         solver = LineResult(buses=list(solution), **self.data)
-        return float(solver.total_time)
+        return float(solver.average_time)
 
     def generate_similar(self, solution: np.ndarray, m: int) -> List[np.ndarray]:
         result = []
