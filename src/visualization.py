@@ -12,7 +12,7 @@ def create_colors_for_lines(num_of_lines: int):
 
 
 class GraphVisualizer:
-    def __init__(self, size: int, edges: tuple[any, any, int]):
+    def __init__(self, size: int, edges: list[tuple[any, any, int]]):
         self.graph = graphviz.Graph('Graph', engine='sfdp')
         self.add_nodes(size)
         self.add_edges(edges)
@@ -35,7 +35,7 @@ class GraphVisualizer:
 
 
 class LinesVisualizer:
-    def __init__(self, size: int, edges: tuple[any, any, int], lines: list[list[tuple]], stations: tuple):
+    def __init__(self, size: int, edges: list[tuple[any, any, int]], lines: list[list[tuple]], stations: list):
         self.colors = create_colors_for_lines(len(lines))
         self.graph = graphviz.Graph('Buses lines', engine='sfdp')
         self.graph.attr(label='\n'.join(['{} -> {}'.format(i, [bs for bs, _ in line]) for i, line in enumerate(lines)]))
