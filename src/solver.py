@@ -12,11 +12,11 @@ class Solver:
         self.num_lines = num_lines
         self.num_buses = num_buses
 
-        print("Start cockroach algorithm")
+        # print("Start cockroach algorithm")
         self.best_lines = self.apply_cockroach_algorithm(**kwargs.get('cockroach', {}))
-        print("Start bees algorithm")
+        # print("Start bees algorithm")
         self.cost, self.best_buses = self.apply_bees_algorithm(**kwargs.get('bees', {}))
-        print("End solving")
+        # print("End solving")
 
     def apply_cockroach_algorithm(self, **kwargs) -> List[List[tuple]]:
         solution = CockroachSolution(self.graph, self.num_lines, self.num_buses, self.passengers, **kwargs)
@@ -36,6 +36,9 @@ class Solver:
         for i, line in enumerate(self.best_lines):
             LinesVisualizer(self.graph.size, self.graph.get_edges(), [line], self.graph.get_interchange_points()).save(f"{graph_name}_line_{i}")
 
-        print("Best lines: {}".format(self.best_lines))
-        print(f"The best distribution of buses -> {self.best_buses}")
-        print(f"Minimum cost is -> {self.cost}")
+        #print("Best lines: {}".format(self.best_lines))
+        #print(f"The best distribution of buses -> {self.best_buses}")
+        #print(f"Minimum cost is -> {self.cost}")
+
+    def get_result(self):
+        return self.cost

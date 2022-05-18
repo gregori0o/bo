@@ -63,7 +63,7 @@ class BeesAlgorithm:
         costs = self.cost_for_population()
         for _ in range(self.iterations):
             the_best = min(the_best, costs[0][0])
-            print(f"Actual minimum -> {the_best}")
+            # print(f"Actual minimum -> {the_best}")
             self.step(costs)
             costs = self.cost_for_population()
         # while (the_best - costs[0][0]) > 0:
@@ -71,7 +71,7 @@ class BeesAlgorithm:
         #     print(f"Actual minimum -> {the_best}")
         #     self.step(costs)
         #     costs = self.cost_for_population()
-        print(f"Minimum is -> {the_best}")
+        # print(f"Minimum is -> {the_best}")
         return costs[0]
 
 
@@ -105,14 +105,14 @@ def main():
     solver = BeesAlgorithm(num_lines, num_buses, data, 10, 1, 0.3)
     result = solver.solve()
 
-    print(f"size={size}")
-    print(f"edges={edges}")
-    print(f"{interchange_points=}")
-    print(f"lines={lines}")
-    print(f"buses={buses}")
-    print(f"{travels=}")
-    print(f"the best result={result[0]}")
-    print(f"the best distribution={result[1]}")
+    # print(f"size={size}")
+    # print(f"edges={edges}")
+    # print(f"{interchange_points=}")
+    # print(f"lines={lines}")
+    # print(f"buses={buses}")
+    # print(f"{travels=}")
+    # print(f"the best result={result[0]}")
+    # print(f"the best distribution={result[1]}")
 
 
 if __name__ == "__main__":

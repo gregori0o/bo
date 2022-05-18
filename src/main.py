@@ -1,15 +1,16 @@
 from base_structure import Graph
 from json_parser import Parser
-from src.solver import Solver
 from graph_generator import GraphGenerator
 from passengers_generator import Passengers
+from tester import Tester
+from config import *
 
 
 def main():
-    g = GraphGenerator(20, 22, 100)
+    g = GraphGenerator(30, 120, 30)
     g.generate_graph_with_all_weights_equal()
     g.save("test")
-    _parser = Parser("utils/graphs/example.json")
+    _parser = Parser("../utils/graphs/example.json")
     interchange_points = _parser.get_interchange_points()
     size = _parser.get_size()
     edges = _parser.get_edges()
@@ -23,26 +24,12 @@ def main():
 
     num_lines = 3
     num_buses = 20
-    kwargs = {
-        'cockroach': {
-            'num_cockroaches': 10,
-            'min_common': 8,
-            'step_size': 2,
-            'dispersing_update_ratio': .5,
-            'n_iterations': 5,
-            'num_to_test': 5
-        },
+    kwargs = config
 
-        'bees': {
-            'num_bees': 10,
-            'num_transition': 2,
-            'update_ratio': .3,
-            'n_iterations': 5
-        }
-    }
-
-    solver = Solver(graph, passengers, num_lines, num_buses, **kwargs)
-    solver.visualize_solution("solution")
+    num_tests = 2
+    criterion = criterion2
+    tester = Tester(graph, passengers, num_lines, num_buses, **kwargs)
+    tester.test(num_tests, criterion)
 
 
 if __name__ == '__main__':
