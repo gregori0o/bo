@@ -11,6 +11,9 @@ class Tester:
         self.cockroach_params = kwargs['cockroach']
         self.bees_params = kwargs['bees']
 
+        self.cockroach_tests_history = []
+        self.bees_test_history = []
+
         self.best_global = inf
 
     def test(self, num_tests, criteria):
@@ -48,13 +51,18 @@ class Tester:
         worst_local = -inf
         for i in range(num_tests):
             # print(self.graph.get_edges())
-            solver = Solver(self.graph, self.passengers, self.num_lines, self.num_buses, kwargs={
+            kwargs = {
                 'cockroach': self.cockroach_params,
                 'bees': self.bees_params
-            })
+            }
+            solver = Solver(self.graph, self.passengers, self.num_lines, self.num_buses, **kwargs)
+            cockroach_results, bees_result = solver.get_steps()
+            self.cockroach_tests_history.append(cockroach_results)
+            self.bees_test_history.append(bees_result)
             result = solver.get_result()
             if result > worst_local:
                 worst_local = result
             if result < best_local:
                 best_local = result
+        print(self.cockroach_tests_history, self.bees_test_history)
         return best_local, worst_local

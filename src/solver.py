@@ -12,15 +12,19 @@ class Solver:
         self.num_lines = num_lines
         self.num_buses = num_buses
 
+        self.cockroach_steps = []
+        self.bees_steps = []
         # print("Start cockroach algorithm")
+        print(kwargs.get('cockroach', {}))
         self.best_lines = self.apply_cockroach_algorithm(**kwargs.get('cockroach', {}))
         # print("Start bees algorithm")
         self.cost, self.best_buses = self.apply_bees_algorithm(**kwargs.get('bees', {}))
         # print("End solving")
 
     def apply_cockroach_algorithm(self, **kwargs) -> List[List[tuple]]:
-        solution = CockroachSolution(self.graph, self.num_lines, self.num_buses, self.passengers, **kwargs)
-        return solution.solve()
+        algorithm = CockroachSolution(self.graph, self.num_lines, self.num_buses, self.passengers, **kwargs)
+        self.cockroach_steps = algorithm.get_step_by_step_results()
+        return algorithm.solve()
 
     def apply_bees_algorithm(self, **kwargs):
         data = {
@@ -28,7 +32,9 @@ class Solver:
             'lines': self.best_lines,
             'travels': self.passengers
         }
-        return BeesAlgorithm(self.num_lines, self.num_buses, data, **kwargs).solve()
+        algorithm = BeesAlgorithm(self.num_lines, self.num_buses, data, **kwargs)
+        self.bees_steps = algorithm.get_results_step_by_step()
+        return algorithm.solve()
 
     def visualize_solution(self, graph_name: str = 'solution_graph'):
         GraphVisualizer(self.graph.size, self.graph.get_edges()).save(graph_name)
@@ -42,3 +48,6 @@ class Solver:
 
     def get_result(self):
         return self.cost
+
+    def get_steps(self):
+        return self.cockroach_steps, self.bees_steps
