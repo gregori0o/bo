@@ -1,5 +1,7 @@
 from math import inf
 from solver import Solver
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 class Tester:
@@ -11,8 +13,8 @@ class Tester:
         self.cockroach_params = kwargs['cockroach']
         self.bees_params = kwargs['bees']
 
-        self.cockroach_tests_history = []
-        self.bees_test_history = []
+        self.cockroach_tests_history = {}
+        self.bees_test_history = {}
 
         self.best_global = inf
 
@@ -28,7 +30,7 @@ class Tester:
             for cockroach_param in cockroach_param_values:
                 print("Param: {}={}".format(cockroach_param_key, cockroach_param))
                 self.cockroach_params[cockroach_param_key] = cockroach_param
-                best_local, worst_local = self._run_tests(num_tests)
+                best_local, worst_local = self._run_tests(num_tests, cockroach_param_key, cockroach_param)
                 print("BEST: {} WORST: {}".format(best_local, worst_local))
                 if best_local < self.best_global:
                     self.best_global = best_local
@@ -40,13 +42,16 @@ class Tester:
             for bees_param in bees_param_values:
                 print("Param: {}={}".format(bees_param_key, bees_param))
                 self.bees_params[bees_param_key] = bees_param
-                best_local, worst_local = self._run_tests(num_tests)
+                best_local, worst_local = self._run_tests(num_tests, bees_param_key, bees_param)
                 print("BEST: {} WORST: {}".format(best_local, worst_local))
                 if best_local < self.best_global:
                     self.best_global = best_local
             print("OVERALL BEST: {}".format(self.best_global))
 
-    def _run_tests(self, num_tests):
+        self.plot_and_save("../utils/test_results/cockroach_test.png", "cockroach")
+        self.plot_and_save("../utils/test_results/bees_test.png", "bees")
+
+    def _run_tests(self, num_tests, param, value):
         best_local = inf
         worst_local = -inf
         for i in range(num_tests):
@@ -57,12 +62,36 @@ class Tester:
             }
             solver = Solver(self.graph, self.passengers, self.num_lines, self.num_buses, **kwargs)
             cockroach_results, bees_result = solver.get_steps()
-            self.cockroach_tests_history.append(cockroach_results)
-            self.bees_test_history.append(bees_result)
+            self.cockroach_tests_history[(i+1, param, value)] = cockroach_results
+            self.bees_test_history[(i+1, param, value)] = bees_result
             result = solver.get_result()
             if result > worst_local:
                 worst_local = result
             if result < best_local:
                 best_local = result
-        print(self.cockroach_tests_history, self.bees_test_history)
         return best_local, worst_local
+
+    def plot_and_save(self, path, algorithm):
+        plt.clf()
+        if algorithm == 'cockroach':
+            plt.title("Cockroach algorithm")
+            for key, times in self.cockroach_tests_history.items():
+                test_num, param_name, param_value = key
+                iters = len(times)
+                plt.plot(np.arange(1, iters+1), times, label="Test: {} for {}={}".format(test_num, param_name, param_value))
+            plt.xlabel('iterations')
+            plt.ylabel('results')
+            plt.legend()
+            plt.savefig(path)
+
+        elif algorithm == 'bees':
+            plt.title("Bees algorithm")
+            for key, times in self.bees_test_history.items():
+                test_num, param_name, param_value = key
+                iters = len(times)
+                plt.plot(np.arange(1, iters + 1), times,
+                         label="Test: {} for {}={}".format(test_num, param_name, param_value))
+            plt.xlabel('iterations')
+            plt.ylabel('results')
+            plt.legend()
+            plt.savefig(path)

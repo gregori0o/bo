@@ -26,8 +26,8 @@ def main():
     num_buses = 20
     kwargs = config
 
-    num_tests = 2
-    criterion = criterion2
+    num_tests = 4
+    criterion = criterion1
     tester = Tester(graph, passengers, num_lines, num_buses, **kwargs)
     tester.test(num_tests, criterion)
 
