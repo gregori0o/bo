@@ -51,3 +51,6 @@ class Solver:
 
     def get_steps(self):
         return self.cockroach_steps, self.bees_steps
+
+    def get_solution(self):
+        return self.cost, self.best_lines, self.best_buses

@@ -3,6 +3,8 @@ from solver import Solver
 import matplotlib.pyplot as plt
 import numpy as np
 
+from visualization import GraphVisualizer, LinesVisualizer
+
 
 class Tester:
     def __init__(self, graph, passengers, num_lines, num_buses, **kwargs):
@@ -17,6 +19,8 @@ class Tester:
         self.bees_test_history = {}
 
         self.best_global = inf
+
+        self.best_solution = None
 
     def test(self, num_tests, criteria):
         cockroach_criteria = criteria.get('cockroach', {})
@@ -50,6 +54,7 @@ class Tester:
 
         self.plot_and_save("../utils/test_results/cockroach_test.png", "cockroach")
         self.plot_and_save("../utils/test_results/bees_test.png", "bees")
+        self.visualize_solution()
 
     def _run_tests(self, num_tests, param, value):
         best_local = inf
@@ -69,6 +74,9 @@ class Tester:
                 worst_local = result
             if result < best_local:
                 best_local = result
+            actual_solution = solver.get_solution()
+            if self.best_solution is None or self.best_solution[0] > actual_solution[0]:
+                self.best_solution = actual_solution
         return best_local, worst_local
 
     def plot_and_save(self, path, algorithm):
@@ -95,3 +103,15 @@ class Tester:
             plt.ylabel('results')
             plt.legend()
             plt.savefig(path)
+
+    def visualize_solution(self, graph_name: str = 'the_best_result'):
+        GraphVisualizer(self.graph.size, self.graph.get_edges()).save(graph_name)
+        if self.best_solution is None:
+            return
+        LinesVisualizer(self.graph.size, self.graph.get_edges(), self.best_solution[1], self.graph.get_interchange_points()).save(f"{graph_name}_lines")
+        for i, line in enumerate(self.best_solution[1]):
+            LinesVisualizer(self.graph.size, self.graph.get_edges(), [line], self.graph.get_interchange_points()).save(f"{graph_name}_line_{i}")
+
+        print("Best lines: {}".format(self.best_solution[1]))
+        print(f"The best distribution of buses -> {self.best_solution[2]}")
+        print(f"Minimum cost is -> {self.best_solution[0]}")
