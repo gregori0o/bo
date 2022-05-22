@@ -1,6 +1,6 @@
 config = {
     'num_lines': 4,
-    'num_buses': 50,
+    'num_buses': 20,
     'num_tests': 4, # number for option -t
     'generate': {
         'vertices': 20,
