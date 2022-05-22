@@ -82,7 +82,7 @@ def main():
     from initial_solution import CreateSolution
     from passengers_generator import Passengers
 
-    _parser = Parser("../utils/graphs/g1.json")
+    _parser = Parser("utils/graphs/g1.json")
     interchange_points = _parser.get_interchange_points()
     size = _parser.get_size()
     edges = _parser.get_edges()

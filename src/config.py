@@ -3,9 +3,9 @@ config = {
     'num_buses': 20,
     'num_tests': 4, # number for option -t
     'generate': {
-        'vertices': 20,
-        'min_edges': 120,
-        'num_passengers': 100
+        'vertices': 15,
+        'min_edges': 30,
+        'num_passengers': 80
     },
     'cockroach': {
         'num_cockroaches': 10,
