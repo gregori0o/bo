@@ -51,7 +51,7 @@ class LineResult:
                 time += station[1] + self.stopping_time
             time += self.turning_back_time
             bus_travel_time[line_idx] = time
-            time_between_buses[line_idx] = time // self.buses[line_idx]
+            time_between_buses[line_idx] = ceil(time / self.buses[line_idx])
         return in_dir_time, in_opp_dir_time, bus_travel_time, time_between_buses
 
 
