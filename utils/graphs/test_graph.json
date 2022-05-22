@@ -2,14 +2,18 @@
     "vertices": [
         {
             "index": 0,
-            "interchange_point": true,
+            "interchange_point": false,
             "neighbours": [
                 {
-                    "index": 1,
+                    "index": 2,
                     "weight": 1
                 },
                 {
-                    "index": 9,
+                    "index": 17,
+                    "weight": 1
+                },
+                {
+                    "index": 10,
                     "weight": 1
                 }
             ]
@@ -19,53 +23,33 @@
             "interchange_point": false,
             "neighbours": [
                 {
-                    "index": 14,
+                    "index": 17,
                     "weight": 1
                 },
                 {
-                    "index": 4,
+                    "index": 9,
                     "weight": 1
                 },
                 {
-                    "index": 0,
+                    "index": 19,
                     "weight": 1
                 },
                 {
                     "index": 5,
-                    "weight": 1
-                },
-                {
-                    "index": 8,
-                    "weight": 1
-                },
-                {
-                    "index": 3,
-                    "weight": 1
-                },
-                {
-                    "index": 6,
-                    "weight": 1
-                },
-                {
-                    "index": 10,
                     "weight": 1
                 }
             ]
         },
         {
             "index": 2,
-            "interchange_point": false,
+            "interchange_point": true,
             "neighbours": [
                 {
-                    "index": 9,
+                    "index": 0,
                     "weight": 1
                 },
                 {
-                    "index": 4,
-                    "weight": 1
-                },
-                {
-                    "index": 12,
+                    "index": 19,
                     "weight": 1
                 }
             ]
@@ -75,15 +59,11 @@
             "interchange_point": false,
             "neighbours": [
                 {
-                    "index": 9,
+                    "index": 15,
                     "weight": 1
                 },
                 {
-                    "index": 1,
-                    "weight": 1
-                },
-                {
-                    "index": 8,
+                    "index": 17,
                     "weight": 1
                 }
             ]
@@ -93,31 +73,7 @@
             "interchange_point": false,
             "neighbours": [
                 {
-                    "index": 10,
-                    "weight": 1
-                },
-                {
-                    "index": 1,
-                    "weight": 1
-                },
-                {
-                    "index": 11,
-                    "weight": 1
-                },
-                {
-                    "index": 9,
-                    "weight": 1
-                },
-                {
-                    "index": 8,
-                    "weight": 1
-                },
-                {
-                    "index": 2,
-                    "weight": 1
-                },
-                {
-                    "index": 12,
+                    "index": 19,
                     "weight": 1
                 }
             ]
@@ -127,15 +83,19 @@
             "interchange_point": false,
             "neighbours": [
                 {
-                    "index": 6,
-                    "weight": 1
-                },
-                {
                     "index": 1,
                     "weight": 1
                 },
                 {
-                    "index": 10,
+                    "index": 8,
+                    "weight": 1
+                },
+                {
+                    "index": 9,
+                    "weight": 1
+                },
+                {
+                    "index": 12,
                     "weight": 1
                 }
             ]
@@ -145,77 +105,75 @@
             "interchange_point": false,
             "neighbours": [
                 {
-                    "index": 5,
-                    "weight": 1
-                },
-                {
                     "index": 14,
                     "weight": 1
                 },
                 {
-                    "index": 13,
+                    "index": 16,
                     "weight": 1
                 },
                 {
-                    "index": 1,
+                    "index": 19,
                     "weight": 1
                 }
             ]
         },
         {
             "index": 7,
-            "interchange_point": true,
+            "interchange_point": false,
             "neighbours": [
                 {
-                    "index": 13,
+                    "index": 14,
                     "weight": 1
                 },
                 {
-                    "index": 10,
+                    "index": 11,
                     "weight": 1
                 }
             ]
         },
         {
             "index": 8,
-            "interchange_point": false,
+            "interchange_point": true,
             "neighbours": [
                 {
-                    "index": 10,
-                    "weight": 1
-                },
-                {
-                    "index": 4,
-                    "weight": 1
-                },
-                {
-                    "index": 1,
-                    "weight": 1
-                },
-                {
-                    "index": 3,
+                    "index": 5,
                     "weight": 1
                 }
             ]
         },
         {
             "index": 9,
+            "interchange_point": true,
+            "neighbours": [
+                {
+                    "index": 1,
+                    "weight": 1
+                },
+                {
+                    "index": 16,
+                    "weight": 1
+                },
+                {
+                    "index": 11,
+                    "weight": 1
+                },
+                {
+                    "index": 5,
+                    "weight": 1
+                },
+                {
+                    "index": 15,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 10,
             "interchange_point": false,
             "neighbours": [
                 {
-                    "index": 3,
-                    "weight": 1
-                },
-                {
-                    "index": 14,
-                    "weight": 1
-                },
-                {
-                    "index": 4,
-                    "weight": 1
-                },
-                {
-                    "index": 2,
+                    "index": 18,
                     "weight": 1
                 },
                 {
@@ -225,45 +183,23 @@
             ]
         },
         {
-            "index": 10,
-            "interchange_point": true,
+            "index": 11,
+            "interchange_point": false,
             "neighbours": [
                 {
-                    "index": 4,
+                    "index": 15,
                     "weight": 1
                 },
                 {
-                    "index": 12,
-                    "weight": 1
-                },
-                {
-                    "index": 8,
-                    "weight": 1
-                },
-                {
-                    "index": 5,
-                    "weight": 1
-                },
-                {
-                    "index": 1,
+                    "index": 9,
                     "weight": 1
                 },
                 {
                     "index": 7,
                     "weight": 1
-                }
-            ]
-        },
-        {
-            "index": 11,
-            "interchange_point": false,
-            "neighbours": [
-                {
-                    "index": 4,
-                    "weight": 1
                 },
                 {
-                    "index": 14,
+                    "index": 12,
                     "weight": 1
                 }
             ]
@@ -273,7 +209,153 @@
             "interchange_point": false,
             "neighbours": [
                 {
+                    "index": 13,
+                    "weight": 1
+                },
+                {
+                    "index": 11,
+                    "weight": 1
+                },
+                {
+                    "index": 5,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 13,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 12,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 14,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 6,
+                    "weight": 1
+                },
+                {
+                    "index": 16,
+                    "weight": 1
+                },
+                {
+                    "index": 18,
+                    "weight": 1
+                },
+                {
+                    "index": 7,
+                    "weight": 1
+                },
+                {
+                    "index": 15,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 15,
+            "interchange_point": true,
+            "neighbours": [
+                {
+                    "index": 11,
+                    "weight": 1
+                },
+                {
+                    "index": 3,
+                    "weight": 1
+                },
+                {
+                    "index": 9,
+                    "weight": 1
+                },
+                {
+                    "index": 18,
+                    "weight": 1
+                },
+                {
+                    "index": 14,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 16,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 9,
+                    "weight": 1
+                },
+                {
+                    "index": 14,
+                    "weight": 1
+                },
+                {
+                    "index": 6,
+                    "weight": 1
+                },
+                {
+                    "index": 18,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 17,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 1,
+                    "weight": 1
+                },
+                {
+                    "index": 0,
+                    "weight": 1
+                },
+                {
+                    "index": 3,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 18,
+            "interchange_point": false,
+            "neighbours": [
+                {
                     "index": 10,
+                    "weight": 1
+                },
+                {
+                    "index": 14,
+                    "weight": 1
+                },
+                {
+                    "index": 15,
+                    "weight": 1
+                },
+                {
+                    "index": 16,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 19,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 1,
+                    "weight": 1
+                },
+                {
+                    "index": 6,
                     "weight": 1
                 },
                 {
@@ -285,452 +367,408 @@
                     "weight": 1
                 }
             ]
-        },
-        {
-            "index": 13,
-            "interchange_point": false,
-            "neighbours": [
-                {
-                    "index": 7,
-                    "weight": 1
-                },
-                {
-                    "index": 14,
-                    "weight": 1
-                },
-                {
-                    "index": 6,
-                    "weight": 1
-                }
-            ]
-        },
-        {
-            "index": 14,
-            "interchange_point": true,
-            "neighbours": [
-                {
-                    "index": 1,
-                    "weight": 1
-                },
-                {
-                    "index": 6,
-                    "weight": 1
-                },
-                {
-                    "index": 9,
-                    "weight": 1
-                },
-                {
-                    "index": 13,
-                    "weight": 1
-                },
-                {
-                    "index": 11,
-                    "weight": 1
-                }
-            ]
         }
     ],
     "passengers": [
         [
-            1,
-            5,
-            227
+            15,
+            8,
+            198
         ],
         [
-            4,
-            6,
-            185
-        ],
-        [
-            13,
             7,
-            1271
+            16,
+            82
         ],
         [
-            8,
-            14,
-            24
-        ],
-        [
-            8,
-            7,
-            1099
-        ],
-        [
+            18,
             0,
-            8,
-            133
+            199
         ],
         [
-            3,
-            5,
-            791
-        ],
-        [
-            13,
-            6,
-            1023
-        ],
-        [
-            0,
-            10,
-            346
-        ],
-        [
-            5,
-            14,
-            735
-        ],
-        [
-            4,
-            0,
-            1211
-        ],
-        [
-            5,
-            0,
-            1176
-        ],
-        [
-            3,
-            12,
-            660
-        ],
-        [
-            12,
-            2,
-            910
-        ],
-        [
-            3,
-            1,
-            1246
-        ],
-        [
-            10,
-            6,
-            557
-        ],
-        [
-            6,
-            4,
-            749
-        ],
-        [
-            0,
-            10,
-            62
-        ],
-        [
-            2,
-            12,
-            1408
-        ],
-        [
-            0,
-            4,
-            1399
-        ],
-        [
-            5,
-            13,
-            90
-        ],
-        [
-            0,
-            13,
-            501
-        ],
-        [
-            3,
-            8,
-            128
-        ],
-        [
-            2,
-            5,
-            526
-        ],
-        [
-            9,
-            7,
-            1171
-        ],
-        [
-            9,
-            0,
-            1115
-        ],
-        [
-            4,
-            2,
-            1340
-        ],
-        [
-            13,
-            2,
-            902
-        ],
-        [
-            9,
-            2,
+            19,
+            15,
             1179
         ],
         [
             7,
-            0,
-            1330
+            8,
+            140
         ],
         [
-            5,
+            8,
+            9,
+            966
+        ],
+        [
+            1,
+            19,
+            1343
+        ],
+        [
+            17,
+            19,
+            1223
+        ],
+        [
+            19,
             4,
+            1118
+        ],
+        [
+            0,
+            12,
+            1381
+        ],
+        [
+            1,
+            7,
+            934
+        ],
+        [
+            7,
+            15,
+            1147
+        ],
+        [
+            12,
+            11,
+            846
+        ],
+        [
+            2,
+            1,
+            346
+        ],
+        [
+            16,
+            13,
+            630
+        ],
+        [
+            17,
+            4,
+            372
+        ],
+        [
+            3,
+            11,
+            1365
+        ],
+        [
+            18,
+            10,
+            1131
+        ],
+        [
+            19,
+            9,
+            1002
+        ],
+        [
+            12,
+            18,
+            671
+        ],
+        [
+            6,
+            11,
+            759
+        ],
+        [
+            10,
+            12,
             1252
         ],
         [
-            5,
-            13,
-            1136
-        ],
-        [
-            10,
-            3,
-            1327
-        ],
-        [
-            7,
-            3,
-            1021
-        ],
-        [
-            6,
-            9,
-            1238
-        ],
-        [
-            12,
-            8,
-            792
-        ],
-        [
-            7,
-            0,
-            1216
-        ],
-        [
-            8,
-            11,
-            810
-        ],
-        [
-            11,
-            4,
-            1192
-        ],
-        [
-            0,
-            14,
-            167
-        ],
-        [
-            10,
-            7,
-            1059
-        ],
-        [
-            8,
-            0,
-            1431
-        ],
-        [
-            10,
-            4,
-            188
-        ],
-        [
-            6,
-            12,
-            702
-        ],
-        [
             2,
-            13,
-            1026
-        ],
-        [
-            9,
-            8,
-            131
-        ],
-        [
-            4,
             7,
-            1309
+            86
         ],
         [
-            4,
-            7,
-            1328
-        ],
-        [
-            11,
             1,
-            1136
-        ],
-        [
-            0,
-            13,
-            1317
-        ],
-        [
             8,
-            10,
-            1330
-        ],
-        [
-            4,
-            8,
-            856
-        ],
-        [
-            7,
-            5,
-            1409
-        ],
-        [
-            7,
-            0,
-            173
+            1427
         ],
         [
             14,
-            9,
-            1120
+            2,
+            1341
+        ],
+        [
+            16,
+            19,
+            1293
+        ],
+        [
+            12,
+            14,
+            16
         ],
         [
             9,
-            8,
-            724
+            18,
+            387
+        ],
+        [
+            13,
+            19,
+            1349
+        ],
+        [
+            18,
+            15,
+            285
+        ],
+        [
+            12,
+            11,
+            453
         ],
         [
             11,
-            14,
-            787
+            15,
+            484
         ],
         [
+            3,
             4,
-            14,
-            730
+            526
         ],
         [
-            2,
+            15,
+            9,
+            108
+        ],
+        [
+            9,
+            12,
+            859
+        ],
+        [
+            13,
             1,
-            272
-        ],
-        [
-            3,
-            9,
-            1134
-        ],
-        [
-            0,
-            2,
-            409
-        ],
-        [
-            14,
-            10,
-            716
+            338
         ],
         [
             12,
+            1,
+            1145
+        ],
+        [
             14,
-            305
+            1,
+            124
+        ],
+        [
+            10,
+            9,
+            362
+        ],
+        [
+            3,
+            18,
+            680
+        ],
+        [
+            10,
+            1,
+            331
+        ],
+        [
+            6,
+            19,
+            216
         ],
         [
             4,
-            2,
-            225
-        ],
-        [
-            5,
-            11,
-            211
-        ],
-        [
-            9,
-            14,
-            178
-        ],
-        [
-            0,
-            13,
-            1244
-        ],
-        [
             6,
+            791
+        ],
+        [
+            19,
+            13,
+            748
+        ],
+        [
+            19,
+            2,
+            1237
+        ],
+        [
+            2,
+            3,
+            957
+        ],
+        [
+            15,
             10,
-            401
-        ],
-        [
-            0,
-            14,
-            946
-        ],
-        [
-            2,
-            0,
-            64
-        ],
-        [
-            2,
-            5,
-            1278
-        ],
-        [
-            11,
-            0,
-            796
+            441
         ],
         [
             8,
-            14,
-            249
+            16,
+            617
         ],
         [
-            6,
-            12,
-            119
+            13,
+            2,
+            202
         ],
         [
-            9,
-            3,
+            4,
+            17,
+            1406
+        ],
+        [
+            4,
+            15,
             500
         ],
         [
-            1,
-            12,
-            297
+            11,
+            9,
+            1383
         ],
         [
-            12,
             9,
-            1139
+            0,
+            474
+        ],
+        [
+            5,
+            13,
+            792
+        ],
+        [
+            10,
+            13,
+            1191
+        ],
+        [
+            8,
+            18,
+            1392
+        ],
+        [
+            17,
+            5,
+            1428
+        ],
+        [
+            7,
+            5,
+            890
+        ],
+        [
+            19,
+            11,
+            214
         ],
         [
             14,
-            4,
-            960
+            12,
+            825
+        ],
+        [
+            18,
+            1,
+            879
+        ],
+        [
+            11,
+            19,
+            1413
+        ],
+        [
+            15,
+            2,
+            1019
+        ],
+        [
+            8,
+            13,
+            939
+        ],
+        [
+            3,
+            13,
+            1080
+        ],
+        [
+            15,
+            10,
+            410
+        ],
+        [
+            12,
+            16,
+            1246
+        ],
+        [
+            3,
+            0,
+            429
         ],
         [
             12,
             6,
-            207
+            1205
         ],
         [
-            6,
+            14,
+            8,
+            140
+        ],
+        [
+            5,
+            18,
+            323
+        ],
+        [
+            8,
+            0,
+            227
+        ],
+        [
             12,
-            378
+            16,
+            217
+        ],
+        [
+            2,
+            16,
+            849
+        ],
+        [
+            15,
+            18,
+            914
+        ],
+        [
+            2,
+            1,
+            133
+        ],
+        [
+            19,
+            2,
+            541
+        ],
+        [
+            8,
+            14,
+            23
+        ],
+        [
+            0,
+            7,
+            365
+        ],
+        [
+            13,
+            17,
+            470
         ]
     ]
 }
