@@ -12,7 +12,7 @@ config = {
         'min_common': 8,
         'step_size': 2,
         'dispersing_update_ratio': .5,
-        'n_iterations': 20,
+        'n_iterations': 10,
         'num_to_test': 5
     },
 
@@ -20,7 +20,7 @@ config = {
         'num_bees': 10,
         'num_transition': 2,
         'update_ratio': .4,
-        'n_iterations': 20
+        'n_iterations': 10
     }
 }
 

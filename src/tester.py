@@ -89,8 +89,8 @@ class Tester:
                 plt.plot(np.arange(1, iters+1), times, label="Test: {} for {}={}".format(test_num, param_name, param_value))
             plt.xlabel('iterations')
             plt.ylabel('results')
-            plt.legend()
-            plt.savefig(path)
+            plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+            plt.savefig(path, bbox_inches='tight')
 
         elif algorithm == 'bees':
             plt.title("Bees algorithm")
@@ -101,8 +101,8 @@ class Tester:
                          label="Test: {} for {}={}".format(test_num, param_name, param_value))
             plt.xlabel('iterations')
             plt.ylabel('results')
-            plt.legend()
-            plt.savefig(path)
+            plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+            plt.savefig(path, bbox_inches='tight')
 
     def visualize_solution(self, graph_name: str = 'the_best_result'):
         GraphVisualizer(self.graph.size, self.graph.get_edges()).save(graph_name)
