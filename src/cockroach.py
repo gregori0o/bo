@@ -135,10 +135,11 @@ class CockroachSolution:
         for lines in list_lines:
             self.cockroaches.append(Cockroach(lines, num_busses, passengers, graph.get_interchange_points(), num_to_test))
 
-    def solve(self):
+    def solve(self, with_log=False):
         for _ in range(self.n_iterations):
             self.partial_results.append(self.get_best_global_cockroach().metric_value)
-            # print("BEST: {}".format(self.get_best_global_cockroach().metric_value))
+            if with_log:
+                print("Actual minimum -> {}".format(self.get_best_global_cockroach().metric_value))
             self.chase_swarming()
             self.dispersing()
 

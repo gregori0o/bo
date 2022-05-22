@@ -52,8 +52,8 @@ class Tester:
                     self.best_global = best_local
             print("OVERALL BEST: {}".format(self.best_global))
 
-        self.plot_and_save("../utils/test_results/cockroach_test.png", "cockroach")
-        self.plot_and_save("../utils/test_results/bees_test.png", "bees")
+        self.plot_and_save("utils/test_results/cockroach_test.png", "cockroach")
+        self.plot_and_save("utils/test_results/bees_test.png", "bees")
         self.visualize_solution()
 
     def _run_tests(self, num_tests, param, value):
