@@ -27,22 +27,22 @@ config = {
 criterias = {
     '1': {
         'cockroach': {
-            'num_cockroaches': [5], # array of values to compare
+            'num_cockroaches': [5, 10, 15, 20],
         },
     },
     '2': {
         'cockroach': {
-            'min_common': [1, 2],
+            'min_common': [1, 4, 7, 10],
         },
     },
     '3': {
         'cockroach': {
-            'step_size': [1, 2],
+            'step_size': [1, 2, 4, 8],
         },
     },
     '4': {
         'cockroach': {
-            'dispersing_update_ratio': [1, 2],
+            'dispersing_update_ratio': [0.2, 0.3, 0.4, 0.5],
         },
     },
     '5': {
