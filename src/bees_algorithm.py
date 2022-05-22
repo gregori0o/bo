@@ -14,6 +14,7 @@ class BeesAlgorithm:
         self.k = num_transition
         self.p = min(max(int(update_ratio * num_bees), 1), num_bees)
         self.iterations = n_iterations
+        self.partial_results = []
 
     def get_cost(self, solution: np.ndarray) -> float:
         solver = LineResult(buses=list(solution), **self.data)
@@ -63,16 +64,20 @@ class BeesAlgorithm:
         costs = self.cost_for_population()
         for _ in range(self.iterations):
             the_best = min(the_best, costs[0][0])
-            print(f"Actual minimum -> {the_best}")
+            # print(f"Actual minimum -> {the_best}")
             self.step(costs)
             costs = self.cost_for_population()
+            self.partial_results.append(the_best)
         # while (the_best - costs[0][0]) > 0:
         #     the_best = min(the_best, costs[0][0])
         #     print(f"Actual minimum -> {the_best}")
         #     self.step(costs)
         #     costs = self.cost_for_population()
-        print(f"Minimum is -> {the_best}")
+        # print(f"Minimum is -> {the_best}")
         return costs[0]
+
+    def get_results_step_by_step(self):
+        return self.partial_results
 
 
 # sample execution
@@ -105,14 +110,14 @@ def main():
     solver = BeesAlgorithm(num_lines, num_buses, data, 10, 1, 0.3)
     result = solver.solve()
 
-    print(f"size={size}")
-    print(f"edges={edges}")
-    print(f"{interchange_points=}")
-    print(f"lines={lines}")
-    print(f"buses={buses}")
-    print(f"{travels=}")
-    print(f"the best result={result[0]}")
-    print(f"the best distribution={result[1]}")
+    # print(f"size={size}")
+    # print(f"edges={edges}")
+    # print(f"{interchange_points=}")
+    # print(f"lines={lines}")
+    # print(f"buses={buses}")
+    # print(f"{travels=}")
+    # print(f"the best result={result[0]}")
+    # print(f"the best distribution={result[1]}")
 
 
 if __name__ == "__main__":

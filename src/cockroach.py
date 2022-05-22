@@ -129,13 +129,16 @@ class CockroachSolution:
 
         self.cockroaches = []
 
+        self.partial_results = []
+
         list_lines = self.solution_creator.create_solutions(num_lines, num_cockroaches)
         for lines in list_lines:
             self.cockroaches.append(Cockroach(lines, num_busses, passengers, graph.get_interchange_points(), num_to_test))
 
     def solve(self):
         for _ in range(self.n_iterations):
-            print("BEST: {}".format(self.get_best_global_cockroach().metric_value))
+            self.partial_results.append(self.get_best_global_cockroach().metric_value)
+            # print("BEST: {}".format(self.get_best_global_cockroach().metric_value))
             self.chase_swarming()
             self.dispersing()
 
@@ -216,6 +219,9 @@ class CockroachSolution:
 
     def get_best_global_cockroach(self):
         return max(self.cockroaches)
+
+    def get_step_by_step_results(self):
+        return self.partial_results
 
 
 def main():
