@@ -1,0 +1,766 @@
+{
+    "vertices": [
+        {
+            "index": 0,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 11,
+                    "weight": 1
+                },
+                {
+                    "index": 15,
+                    "weight": 1
+                },
+                {
+                    "index": 19,
+                    "weight": 1
+                },
+                {
+                    "index": 18,
+                    "weight": 1
+                },
+                {
+                    "index": 4,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 1,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 9,
+                    "weight": 1
+                },
+                {
+                    "index": 17,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 2,
+            "interchange_point": true,
+            "neighbours": [
+                {
+                    "index": 5,
+                    "weight": 1
+                },
+                {
+                    "index": 13,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 3,
+            "interchange_point": true,
+            "neighbours": [
+                {
+                    "index": 9,
+                    "weight": 1
+                },
+                {
+                    "index": 5,
+                    "weight": 1
+                },
+                {
+                    "index": 13,
+                    "weight": 1
+                },
+                {
+                    "index": 19,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 4,
+            "interchange_point": true,
+            "neighbours": [
+                {
+                    "index": 17,
+                    "weight": 1
+                },
+                {
+                    "index": 6,
+                    "weight": 1
+                },
+                {
+                    "index": 18,
+                    "weight": 1
+                },
+                {
+                    "index": 10,
+                    "weight": 1
+                },
+                {
+                    "index": 0,
+                    "weight": 1
+                },
+                {
+                    "index": 16,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 5,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 3,
+                    "weight": 1
+                },
+                {
+                    "index": 2,
+                    "weight": 1
+                },
+                {
+                    "index": 18,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 6,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 4,
+                    "weight": 1
+                },
+                {
+                    "index": 10,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 7,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 14,
+                    "weight": 1
+                },
+                {
+                    "index": 10,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 8,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 18,
+                    "weight": 1
+                },
+                {
+                    "index": 12,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 9,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 3,
+                    "weight": 1
+                },
+                {
+                    "index": 1,
+                    "weight": 1
+                },
+                {
+                    "index": 16,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 10,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 6,
+                    "weight": 1
+                },
+                {
+                    "index": 7,
+                    "weight": 1
+                },
+                {
+                    "index": 4,
+                    "weight": 1
+                },
+                {
+                    "index": 12,
+                    "weight": 1
+                },
+                {
+                    "index": 14,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 11,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 0,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 12,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 18,
+                    "weight": 1
+                },
+                {
+                    "index": 10,
+                    "weight": 1
+                },
+                {
+                    "index": 8,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 13,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 3,
+                    "weight": 1
+                },
+                {
+                    "index": 2,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 14,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 7,
+                    "weight": 1
+                },
+                {
+                    "index": 16,
+                    "weight": 1
+                },
+                {
+                    "index": 10,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 15,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 0,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 16,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 14,
+                    "weight": 1
+                },
+                {
+                    "index": 9,
+                    "weight": 1
+                },
+                {
+                    "index": 4,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 17,
+            "interchange_point": true,
+            "neighbours": [
+                {
+                    "index": 4,
+                    "weight": 1
+                },
+                {
+                    "index": 19,
+                    "weight": 1
+                },
+                {
+                    "index": 1,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 18,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 4,
+                    "weight": 1
+                },
+                {
+                    "index": 8,
+                    "weight": 1
+                },
+                {
+                    "index": 12,
+                    "weight": 1
+                },
+                {
+                    "index": 0,
+                    "weight": 1
+                },
+                {
+                    "index": 5,
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "index": 19,
+            "interchange_point": false,
+            "neighbours": [
+                {
+                    "index": 17,
+                    "weight": 1
+                },
+                {
+                    "index": 0,
+                    "weight": 1
+                },
+                {
+                    "index": 3,
+                    "weight": 1
+                }
+            ]
+        }
+    ],
+    "passengers": [
+        [
+            14,
+            11,
+            1128
+        ],
+        [
+            11,
+            3,
+            928
+        ],
+        [
+            10,
+            11,
+            178
+        ],
+        [
+            5,
+            14,
+            228
+        ],
+        [
+            18,
+            10,
+            766
+        ],
+        [
+            7,
+            6,
+            761
+        ],
+        [
+            1,
+            6,
+            578
+        ],
+        [
+            9,
+            15,
+            24
+        ],
+        [
+            13,
+            7,
+            454
+        ],
+        [
+            3,
+            7,
+            153
+        ],
+        [
+            10,
+            7,
+            588
+        ],
+        [
+            12,
+            1,
+            386
+        ],
+        [
+            0,
+            2,
+            459
+        ],
+        [
+            15,
+            9,
+            164
+        ],
+        [
+            10,
+            14,
+            1157
+        ],
+        [
+            9,
+            7,
+            536
+        ],
+        [
+            15,
+            19,
+            561
+        ],
+        [
+            3,
+            5,
+            1008
+        ],
+        [
+            16,
+            1,
+            927
+        ],
+        [
+            6,
+            2,
+            80
+        ],
+        [
+            5,
+            18,
+            869
+        ],
+        [
+            12,
+            17,
+            339
+        ],
+        [
+            6,
+            0,
+            88
+        ],
+        [
+            0,
+            15,
+            879
+        ],
+        [
+            11,
+            5,
+            1334
+        ],
+        [
+            8,
+            15,
+            1223
+        ],
+        [
+            3,
+            7,
+            457
+        ],
+        [
+            12,
+            11,
+            157
+        ],
+        [
+            12,
+            9,
+            570
+        ],
+        [
+            13,
+            4,
+            965
+        ],
+        [
+            13,
+            14,
+            587
+        ],
+        [
+            13,
+            19,
+            996
+        ],
+        [
+            11,
+            0,
+            125
+        ],
+        [
+            11,
+            7,
+            173
+        ],
+        [
+            4,
+            18,
+            324
+        ],
+        [
+            7,
+            0,
+            516
+        ],
+        [
+            8,
+            6,
+            605
+        ],
+        [
+            17,
+            2,
+            79
+        ],
+        [
+            18,
+            17,
+            1363
+        ],
+        [
+            4,
+            18,
+            628
+        ],
+        [
+            7,
+            9,
+            767
+        ],
+        [
+            7,
+            17,
+            1084
+        ],
+        [
+            2,
+            0,
+            573
+        ],
+        [
+            16,
+            3,
+            932
+        ],
+        [
+            14,
+            0,
+            313
+        ],
+        [
+            9,
+            1,
+            514
+        ],
+        [
+            4,
+            19,
+            484
+        ],
+        [
+            13,
+            8,
+            1078
+        ],
+        [
+            15,
+            7,
+            661
+        ],
+        [
+            7,
+            6,
+            230
+        ],
+        [
+            3,
+            4,
+            1190
+        ],
+        [
+            4,
+            13,
+            406
+        ],
+        [
+            2,
+            15,
+            1109
+        ],
+        [
+            16,
+            1,
+            1183
+        ],
+        [
+            19,
+            9,
+            521
+        ],
+        [
+            8,
+            0,
+            593
+        ],
+        [
+            9,
+            2,
+            1362
+        ],
+        [
+            17,
+            10,
+            37
+        ],
+        [
+            19,
+            3,
+            220
+        ],
+        [
+            19,
+            11,
+            1181
+        ],
+        [
+            17,
+            3,
+            377
+        ],
+        [
+            11,
+            17,
+            1363
+        ],
+        [
+            7,
+            15,
+            792
+        ],
+        [
+            9,
+            1,
+            352
+        ],
+        [
+            2,
+            11,
+            910
+        ],
+        [
+            5,
+            15,
+            45
+        ],
+        [
+            14,
+            7,
+            952
+        ],
+        [
+            3,
+            5,
+            496
+        ],
+        [
+            6,
+            18,
+            612
+        ],
+        [
+            19,
+            7,
+            1095
+        ],
+        [
+            8,
+            6,
+            449
+        ],
+        [
+            13,
+            8,
+            530
+        ],
+        [
+            18,
+            4,
+            1052
+        ],
+        [
+            4,
+            0,
+            638
+        ],
+        [
+            16,
+            3,
+            1190
+        ],
+        [
+            0,
+            6,
+            458
+        ],
+        [
+            3,
+            18,
+            1138
+        ],
+        [
+            18,
+            3,
+            196
+        ],
+        [
+            7,
+            8,
+            692
+        ],
+        [
+            5,
+            0,
+            300
+        ]
+    ]
+}
