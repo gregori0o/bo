@@ -59,21 +59,16 @@ class BeesAlgorithm:
                 self.population.append(solution)
         self.population += DivideBuses(self.num_lines, self.num_buses).create_solutions(free_bees)
 
-    def solve(self) -> Tuple[float, np.ndarray]:
+    def solve(self, with_log=False) -> Tuple[float, np.ndarray]:
         the_best = np.inf
         costs = self.cost_for_population()
         for _ in range(self.iterations):
             the_best = min(the_best, costs[0][0])
-            # print(f"Actual minimum -> {the_best}")
+            if with_log:
+                print(f"Actual minimum -> {the_best}")
             self.step(costs)
             costs = self.cost_for_population()
             self.partial_results.append(the_best)
-        # while (the_best - costs[0][0]) > 0:
-        #     the_best = min(the_best, costs[0][0])
-        #     print(f"Actual minimum -> {the_best}")
-        #     self.step(costs)
-        #     costs = self.cost_for_population()
-        # print(f"Minimum is -> {the_best}")
         return costs[0]
 
     def get_results_step_by_step(self):
