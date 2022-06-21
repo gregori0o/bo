@@ -43,19 +43,3 @@ class Passengers:
 
     def get_travels(self) -> list[[int, int, int]]:
         return self.travels
-
-def main():
-    print("random")
-    p = Passengers(num_of_stations=8, num_of_passengers=12)
-    print(f"{p.travels=}\n")
-
-    print("with factor for interchange_points and default alfa=3")
-    p = Passengers(num_of_stations=8, num_of_passengers=12, interchange_points=[4, 7, 2])
-    print(f"{p.travels=}\n")
-
-    print("with factor for interchange_points and alfa")
-    p = Passengers(num_of_stations=8, num_of_passengers=12, interchange_points=[4, 7, 2], alfa=7)
-    print(f"{p.travels=}\n")
-
-if __name__ == "__main__":
-    main()
