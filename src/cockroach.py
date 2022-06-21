@@ -223,24 +223,3 @@ class CockroachSolution:
 
     def get_step_by_step_results(self):
         return self.partial_results
-
-
-def main():
-    # g = GraphGenerator(20, 22)
-    # g.generate_graph_with_all_weights_equal("../utils/graphs/example.json")
-    _parser = Parser("utils/graphs/g1.json")
-    interchange_points = _parser.get_interchange_points()
-    size = _parser.get_size()
-    edges = _parser.get_edges()
-    graph = Graph(size)
-    for i, j, w in edges:
-        graph.add_edge(i, j, w)
-    graph.set_interchange_points(interchange_points)
-
-    solution = CockroachSolution(graph)
-
-    solution.solve(3)
-
-
-if __name__ == '__main__':
-    main()

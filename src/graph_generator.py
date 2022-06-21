@@ -67,13 +67,3 @@ class GraphGenerator:
             return
         with open("utils/graphs/" + filename + ".json", "w") as file:
             json.dump(self.graph, file, indent=4)
-
-# sample execution
-# g = GraphGenerator(10, 20)
-# g.generate_graph_with_all_weights_equal()
-# g.save("filename")
-# print(g.graph)
-# print(f"{g.edges_list=}")
-# print(f"{g.vertices=}")
-# print(f"{g.edges=}")
-# print(f"{g.interchange_points=}")
